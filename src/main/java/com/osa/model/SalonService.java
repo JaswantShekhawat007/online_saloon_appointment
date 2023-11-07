@@ -1,14 +1,10 @@
 package com.osa.model;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.osa.enums.ServiceName;
 
 import lombok.AllArgsConstructor;

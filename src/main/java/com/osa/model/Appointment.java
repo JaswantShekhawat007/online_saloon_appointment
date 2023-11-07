@@ -53,6 +53,7 @@ public class Appointment {
     @JoinColumn(name = "payment_id", referencedColumnName = "paymentId")
 	private Payment payment;
 	
+	@JsonIgnore
 	@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(referencedColumnName = "serviceId")
 	private SalonService service;
