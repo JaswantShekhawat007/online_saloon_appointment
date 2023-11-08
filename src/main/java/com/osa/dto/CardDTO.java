@@ -16,13 +16,21 @@ import lombok.NoArgsConstructor;
 public class CardDTO {
 	
 	private long id;
+	
 	@NotEmpty
 	private String cardName;
+	
+	/*
+	 * Credit Card Number ranges between 10 to 19
+	 * Debit Card Number ranges between 14 to 16
+	 * */
 	@NotEmpty
     @Size(min = 10, max = 19)
 	private String cardNumber;
+	
 	@FutureOrPresent
 	private LocalDate expiryDate;
+	
 	@NotEmpty
 	private String bankName;
 	

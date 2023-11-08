@@ -20,18 +20,25 @@ import lombok.NoArgsConstructor;
 public class AppointmentDTO {
 	
 	private long appointmentId;
+	
 	@NotEmpty
 	private String location;
+	
 	@NotEmpty
 	private VisitType visitType;
+	
 	@Future
 	private LocalDate prefferedDate;
+	
 	@Future
 	private LocalTime prefferedTime;
+	
 	@NotEmpty
 	private ServiceName serviceName;
+	
 	@Valid
 	private CustomerDTO customer;
+	
 	@Valid
 	private PaymentDTO payment;
 	

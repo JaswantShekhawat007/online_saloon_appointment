@@ -24,10 +24,13 @@ public class OrderDTO {
 	
 	@NotNull
 	private double amount;
+	
 	@FutureOrPresent
 	private LocalDate billingDate;
+	
 	@Valid
 	private CustomerDTO customer;
+	
 	@NotEmpty
 	@Enumerated(EnumType.STRING)
 	private PaymentMethod paymentMethod;
