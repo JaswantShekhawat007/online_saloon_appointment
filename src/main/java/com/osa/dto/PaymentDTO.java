@@ -18,12 +18,15 @@ import lombok.NoArgsConstructor;
 public class PaymentDTO {
 	
 	private long paymentId;
+	
 	@NotEmpty
 	@Enumerated(EnumType.STRING)
 	private PaymentType type;
+	
 	@NotEmpty
 	@Enumerated(EnumType.STRING)
 	private PaymentStatus status;
+	
 	@Valid
 	private CardDTO card;
 }
