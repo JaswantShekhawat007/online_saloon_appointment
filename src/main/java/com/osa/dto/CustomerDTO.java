@@ -10,12 +10,14 @@ import javax.validation.constraints.Size;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class CustomerDTO {
+@EqualsAndHashCode(callSuper = true)
+public class CustomerDTO extends UserDTO{
 	
 	private String user_id; 
 	@NotEmpty
