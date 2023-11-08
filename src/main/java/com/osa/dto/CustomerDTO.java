@@ -20,15 +20,20 @@ import lombok.NoArgsConstructor;
 public class CustomerDTO extends UserDTO{
 	
 	private String user_id; 
+	
 	@NotEmpty
 	private String name;
+	
 	@Email
 	private String email;
+	
 	@NotEmpty
 	@Size(max=10, min=10)
 	private String contactNo;
+	
 	@Past
 	private LocalDate dob;
+	
 	@Valid
 	private AddressDTO address;
 	

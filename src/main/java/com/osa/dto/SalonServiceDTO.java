@@ -21,8 +21,10 @@ public class SalonServiceDTO {
 	
 	@NotEmpty
 	private String servicePrice;
+	
 	@NotEmpty
 	private String serviceDuration;
+	
 	@NotNull
 	private int discount;
 	
