@@ -1,8 +1,13 @@
 package com.osa.dto;
 
+import java.util.List;
+import java.util.Set;
+
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import com.osa.model.Customer;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -33,5 +38,7 @@ public class AddressDTO {
 	@NotNull
 	@Size(max=6, min=6)
 	private int pincode;
+	
+	private List<Customer> customer ;
 	
 }

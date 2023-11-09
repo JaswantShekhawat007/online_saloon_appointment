@@ -1,10 +1,16 @@
 package com.osa.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import java.util.Set;
 
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,7 +23,6 @@ import lombok.NoArgsConstructor;
 public class Address {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer addressId;
 	
 	private String doorNo;
@@ -27,6 +32,9 @@ public class Address {
 	private String state;
 	private int pincode;
 	
-	
+	@JsonIgnore
+	@ManyToMany(mappedBy = "address", fetch = FetchType.EAGER)
+	@Fetch(value = FetchMode.SELECT)
+	private Set<Customer> customer;
 	
 }

@@ -1,5 +1,7 @@
 package com.osa.dto;
 
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 
@@ -10,9 +12,10 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Inheritance(strategy = InheritanceType.JOINED)
 public class UserDTO {
 	
-	private String user_id;
+	private String userId;
 	
 	/*
 		Password should contains at least 8 characters and at most 20 characters.

@@ -1,12 +1,14 @@
 package com.osa.dto;
 
 import java.time.LocalDate;
+import java.util.List;
 
-import javax.validation.Valid;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
+
+import com.osa.model.Address;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,8 +20,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 public class CustomerDTO extends UserDTO{
-	
-	private String user_id; 
 	
 	@NotEmpty
 	private String name;
@@ -34,7 +34,6 @@ public class CustomerDTO extends UserDTO{
 	@Past
 	private LocalDate dob;
 	
-	@Valid
-	private AddressDTO address;
+	private List<Address> address; 
 	
 }

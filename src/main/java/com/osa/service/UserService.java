@@ -1,13 +1,13 @@
 package com.osa.service;
 
-import com.osa.model.User;
+import com.osa.dto.UserDTO;
 
 public interface UserService {
 	
-	User signIn(User user);
+	UserDTO signIn(UserDTO userDTO);
 	
-	User signOut(User user);
+	UserDTO signOut(UserDTO userDTO);
 	
-	User changePassword(long id, User user);
+	UserDTO changePassword(long id, UserDTO userDTO);
 	
 }
