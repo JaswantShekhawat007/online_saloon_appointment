@@ -7,6 +7,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -27,9 +29,13 @@ import lombok.NoArgsConstructor;
 public class Order {
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long orderId;
+	
+	
 	@Column(scale=2)
 	private double amount;
+	
 	
 	private LocalDate billingDate;
 	
@@ -37,6 +43,7 @@ public class Order {
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "customer_id", referencedColumnName = "userId")
 	private Customer customer;
+	
 	
 	@Enumerated(EnumType.STRING)
 	private PaymentMethod paymentMethod;

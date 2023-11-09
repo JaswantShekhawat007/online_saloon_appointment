@@ -2,20 +2,20 @@ package com.osa.service;
 
 import java.util.List;
 
-import com.osa.model.Appointment;
+import com.osa.dto.AppointmentDTO;
 
 public interface AppointmentService {
 	
-	Appointment addAppointment(Appointment appointment);
+	AppointmentDTO addAppointment(AppointmentDTO appointmentDTO);
 	
-	Appointment removeAppointment(long id);
+	AppointmentDTO removeAppointment(long id);
 	
-	Appointment updateAppointment(long id, Appointment appointment);
+	AppointmentDTO updateAppointment(long id, AppointmentDTO appointmentDTO);
 	
-	Appointment getAppointment(long id);
+	AppointmentDTO getAppointment(long id);
 	
-	List<Appointment> getAllAppointment();
+	List<AppointmentDTO> getAllAppointment();
 	
-	List<Appointment> getOpenAppointment();
+	List<AppointmentDTO> getOpenAppointment();
 	
 }
