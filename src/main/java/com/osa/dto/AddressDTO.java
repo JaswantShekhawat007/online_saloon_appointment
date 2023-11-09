@@ -1,5 +1,6 @@
 package com.osa.dto;
 
+import java.util.List;
 import java.util.Set;
 
 import javax.validation.constraints.NotEmpty;
@@ -38,6 +39,6 @@ public class AddressDTO {
 	@Size(max=6, min=6)
 	private int pincode;
 	
-	private Set<Customer> customer ;
+	private List<Customer> customer ;
 	
 }
