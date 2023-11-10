@@ -22,7 +22,7 @@ import com.osa.service.AppointmentService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
-@Tag(name = "Online Saloon Appointment", description = "Appointment Service API's")
+@Tag(name = "Appointment Service APIs", description = "Online Saloon Appointment")
 @RequestMapping(value="/appointment")
 public class AppointmentController {
 	

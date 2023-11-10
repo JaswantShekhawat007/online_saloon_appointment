@@ -21,17 +21,19 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(callSuper = true)
 public class CustomerDTO extends UserDTO{
 	
-	@NotEmpty
+	@NotEmpty(message = "Name Field Empty")
 	private String name;
 	
-	@Email
+	@NotEmpty
+	@Email(message = "Invalid Email")
 	private String email;
 	
-	@NotEmpty
-	@Size(max=10, min=10)
+	@NotEmpty(message = "Please provide contact number")
+	@Size(max=10, min=10, message = "Invalid contact number")
 	private String contactNo;
 	
-	@Past
+	@NotEmpty
+	@Past(message = "Invalid Date of Birth")
 	private LocalDate dob;
 	
 	private List<Address> address; 
