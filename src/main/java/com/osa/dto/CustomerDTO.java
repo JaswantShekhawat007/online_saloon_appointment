@@ -36,6 +36,7 @@ public class CustomerDTO extends UserDTO{
 	@Past(message = "Invalid Date of Birth")
 	private LocalDate dob;
 	
+	
 	private List<Address> address; 
 	
 }
