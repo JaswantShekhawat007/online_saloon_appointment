@@ -48,6 +48,7 @@ public class Customer extends User {
 				name = "address_id", referencedColumnName = "addressId")
 		
 	)
+	
 	private List<Address> address;
 	
 	

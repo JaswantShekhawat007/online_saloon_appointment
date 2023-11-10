@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.osa.dto.CustomerDTO;
+import com.osa.exception.CustomerNotFoundException;
 import com.osa.model.Customer;
 import com.osa.repository.CustomerRepository;
 
@@ -40,6 +41,8 @@ public class CustomerServiceImpl implements CustomerService{
 
 	@Override
 	public CustomerDTO updateCustomer(long custId, CustomerDTO customerDTO) {
+		customerRepository.findById(String.valueOf(custId))
+				.orElseThrow(()->new CustomerNotFoundException("Employee With ID :"+custId+" Not Exist!"));
 		Customer customer = new Customer();
 		BeanUtils.copyProperties(customerDTO, customer);
 		customerRepository.save(customer);
@@ -49,9 +52,9 @@ public class CustomerServiceImpl implements CustomerService{
 	@Override
 	public CustomerDTO getCustomer(long custId) {
 		CustomerDTO customerDTO = new CustomerDTO() ;
-		Customer customer = customerRepository.findById(String.valueOf(custId)).get();
+		Customer customer = customerRepository.findById(String.valueOf(custId))
+				.orElseThrow(()->new CustomerNotFoundException("Employee With ID :"+custId+" Not Exist!"));
 		BeanUtils.copyProperties(customer, customerDTO);
-        //customerRepository.findById(String.valueOf(custId)).get();/*.orElseThrow(()->new CustomerNotFoundException("Employee With ID :"+eid+" Not Exist!"))*/
 		return customerDTO;
 		
 	}

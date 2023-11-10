@@ -22,14 +22,15 @@ public class OrderDTO {
 
 	private long orderId;
 	
-	@NotNull
+	@NotNull(message = "Please Enter Amount")
 	private double amount;
 	
-	@FutureOrPresent
+	@NotEmpty
+	@FutureOrPresent(message = "Invalid Billing Date")
 	private LocalDate billingDate;
 	
 	@Valid
-	private CustomerDTO customer;
+//	private CustomerDTO customer;
 	
 	@NotEmpty
 	@Enumerated(EnumType.STRING)
