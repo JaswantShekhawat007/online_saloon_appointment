@@ -19,7 +19,7 @@ public class PaymentDTO {
 	
 	private long paymentId;
 	
-	@NotEmpty
+	@NotEmpty(message = "Payment Type Required")
 	@Enumerated(EnumType.STRING)
 	private PaymentType type;
 	

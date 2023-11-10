@@ -22,7 +22,7 @@ public class SalonServiceDTO {
 	@NotEmpty
 	private String servicePrice;
 	
-	@NotEmpty
+	@NotEmpty()
 	private String serviceDuration;
 	
 	@NotNull
