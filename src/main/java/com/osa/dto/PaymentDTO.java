@@ -23,7 +23,7 @@ public class PaymentDTO {
 	@Enumerated(EnumType.STRING)
 	private PaymentType type;
 	
-	@NotEmpty
+	@NotEmpty(message = "Payment Status Required")
 	@Enumerated(EnumType.STRING)
 	private PaymentStatus status;
 	
