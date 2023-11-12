@@ -35,20 +35,31 @@ public class PaymentServiceImpl implements IPaymentService{
 
 	@Override
     public PaymentDTO removePayment(long id) {
-		PaymentDTO paymentDTO = getPaymentDetails(id);
-		Payment payment = new Payment();
-		BeanUtils.copyProperties(paymentDTO, payment);
-		paymentrepository.delete(payment);
-		return paymentDTO;
 		
+		if(paymentrepository.existsById(id)) {
+		    Payment payment = paymentrepository.findById(id).get();
+		    PaymentDTO paymentDTO = new PaymentDTO();
+		    BeanUtils.copyProperties(payment, paymentDTO);
+		    paymentrepository.delete(payment);
+		return paymentDTO;
+		}
+		else {
+			throw new PaymentNotFoundException("Payment with id " + id + " does not exist");
+		}
 	}
 
 	@Override
-	public PaymentDTO updatePayment(long id, Payment payment) {
-		PaymentDTO paymentDTO= new PaymentDTO();
-		BeanUtils.copyProperties(paymentDTO, payment);
-		paymentrepository.save(payment);
-		return paymentDTO;
+	public PaymentDTO updatePayment(long id, PaymentDTO paymentDTO) {
+		if(paymentrepository.existsById(id)) {
+		    Payment payment = paymentrepository.findById(id).get();
+		    PaymentDTO paymentDTO1 = new PaymentDTO();
+		    BeanUtils.copyProperties(payment, paymentDTO1);
+		    paymentrepository.delete(payment);
+		return paymentDTO1;
+		}
+		else {
+			throw new PaymentNotFoundException("Payment with id " + id + " does not exist.");
+		}
 	}
 
 	@Override

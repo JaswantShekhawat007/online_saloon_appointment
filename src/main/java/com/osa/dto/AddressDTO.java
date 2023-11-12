@@ -1,13 +1,12 @@
 package com.osa.dto;
 
 import java.util.List;
-import java.util.Set;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import com.osa.model.Customer;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,25 +19,26 @@ public class AddressDTO {
 	
 	private Integer id;
 	
-	@NotEmpty
+	@NotEmpty(message = "Empty Field Door Number")
 	private String doorNo;
 	
-	@NotEmpty
+	@NotEmpty(message = "Empty Field Street")
 	private String street;
 	
-	@NotEmpty
+	@NotEmpty(message = "Empty Field Area")
 	private String area;
 	
-	@NotEmpty
+	@NotEmpty(message = "Empty Field City")
 	private String city;
 	
-	@NotEmpty
+	@NotEmpty(message = "Empty Field State")
 	private String state;
 	
 	@NotNull
-	@Size(max=6, min=6)
+	@Size(max=6, min=6,message = "Invalid Pincode")
 	private int pincode;
 	
-	private List<Customer> customer ;
+	@JsonIgnore
+	private List<CustomerDTO> customerDTO ;
 	
 }

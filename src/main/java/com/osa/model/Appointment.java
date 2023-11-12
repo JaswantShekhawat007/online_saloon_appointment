@@ -18,6 +18,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.osa.enums.VisitType;
 
 
@@ -40,23 +41,26 @@ public class Appointment {
 	
 	private LocalTime prefferedTime;
 	
+	@JsonIgnore
 	@OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(referencedColumnName = "serviceName")
+    @JoinColumn(referencedColumnName = "serviceName", nullable = true)
 	private SalonService serviceName;
 	
 	//One to Many Relationship Between Customer and Appointment
+	@JsonIgnore
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "customer_id", referencedColumnName = "userId")
+	@JoinColumn(name = "customer_id", referencedColumnName = "userId", nullable = true)
 	private Customer customer;
 	
 	//Mapping Appointment and Payment Entity
+	@JsonIgnore
 	@OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "payment_id", referencedColumnName = "paymentId")
+    @JoinColumn(name = "payment_id", referencedColumnName = "paymentId", nullable = true)
 	private Payment payment;
 	
 //	@JsonIgnore
 //	@OneToOne(cascade = CascadeType.ALL)
-//    @JoinColumn(referencedColumnName = "serviceId")
+//  @JoinColumn(referencedColumnName = "serviceId")
 //	private SalonService service;
 	
 }

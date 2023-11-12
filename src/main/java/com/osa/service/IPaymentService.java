@@ -11,7 +11,7 @@ public interface IPaymentService {
 	
 	public PaymentDTO addPayment(PaymentDTO paymentDTO);
 	public PaymentDTO removePayment(long id);
-	public PaymentDTO updatePayment(long id,Payment payment);
+	public PaymentDTO updatePayment(long id,PaymentDTO paymentDTO);
 	public PaymentDTO getPaymentDetails(long id);
 	public List<PaymentDTO> getAllPaymentDetails();
 }
