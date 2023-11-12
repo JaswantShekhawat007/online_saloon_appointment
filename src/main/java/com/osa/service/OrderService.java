@@ -28,20 +28,18 @@ public class OrderService implements IOrderService{
 	}
 
 	@Override
-	public OrderDTO removeOrder(long id) throws OrderNotFoundException {
+	public Boolean removeOrder(Long id) throws OrderNotFoundException {
 	
 		if(orderRepository.existsById(id)) {
 			Order order = orderRepository.findById(id).get();
-			OrderDTO orderDTO = new OrderDTO();
-			BeanUtils.copyProperties(order, orderDTO);
 			orderRepository.delete(order);;
-			return orderDTO;
+			return true;
 		}
 		throw new OrderNotFoundException("Enter valid order to be deleted.");
 	}
 
 	@Override
-	public OrderDTO updateOrder(long id, OrderDTO orderDTO) throws OrderNotFoundException {
+	public OrderDTO updateOrder(Long id, OrderDTO orderDTO) throws OrderNotFoundException {
 		if(orderRepository.existsById(id)) {
 			Order order = new Order();
 			BeanUtils.copyProperties(orderDTO, order);
@@ -52,7 +50,7 @@ public class OrderService implements IOrderService{
 	}
 
 	@Override
-	public OrderDTO getOrderDetails(long id) throws OrderNotFoundException {
+	public OrderDTO getOrderDetails(Long id) throws OrderNotFoundException {
 		Optional<Order> optionalOrder = orderRepository.findById(id);
 		if(optionalOrder.isPresent()) {
 			Order order = optionalOrder.get();

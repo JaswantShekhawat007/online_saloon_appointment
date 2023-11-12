@@ -14,4 +14,9 @@ public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler
 		return new ResponseEntity<String>(cnfe.getLocalizedMessage(), HttpStatus.NOT_FOUND);
 	}
 	
+	@ExceptionHandler(OrderNotFoundException.class)
+	public ResponseEntity<String> handleOrderNotFoundException(OrderNotFoundException onfe) {
+		return new ResponseEntity<String>(onfe.getLocalizedMessage(),HttpStatus.NOT_FOUND);
+	}
+	
 }
