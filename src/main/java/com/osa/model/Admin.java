@@ -1,18 +1,14 @@
 package com.osa.model;
 
 import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.PrimaryKeyJoinColumn;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.EqualsAndHashCode;
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
+@EqualsAndHashCode(callSuper = true)
 @Entity
-public class Admin {
-	
-	@Id
-	private String userId;
+@PrimaryKeyJoinColumn(name = "userId")
+public class Admin extends User {
 }

@@ -1,5 +1,7 @@
 package com.osa.dto;
 
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 
@@ -10,9 +12,10 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Inheritance(strategy = InheritanceType.JOINED)
 public class UserDTO {
 	
-	private String user_id;
+	private String userId;
 	
 	/*
 		Password should contains at least 8 characters and at most 20 characters.
@@ -32,8 +35,8 @@ public class UserDTO {
 		.{8, 20} represents at least 8 characters and at most 20 characters.
 		$ represents the end of the string.
 	 */
-	@NotEmpty
-	@Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&-+=()])(?=\\S+$).{8, 20}$")
+	@NotEmpty(message = "Password Field Empty")
+	@Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&-+=()])(?=\\S+$).{8, 20}$", message = "Invalid Password Rule")
 	private String password;
 	
 }

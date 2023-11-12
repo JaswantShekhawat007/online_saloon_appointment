@@ -1,11 +1,19 @@
 package com.osa.service;
 
-import com.osa.model.Customer;
+import java.util.List;
+
+import com.osa.dto.CustomerDTO;
 
 public interface CustomerService {
 	
-	Customer addCustomer(Customer customer);
+	CustomerDTO addCustomer(CustomerDTO customerDTO);
 	
-	Customer removeCustomer(long custId);
+	CustomerDTO removeCustomer(long custId);
+	
+	CustomerDTO updateCustomer(long custId, CustomerDTO customerDTO);
+	
+	CustomerDTO getCustomer(long custId);
+	
+	List<CustomerDTO> getAllCustomer();
 	
 }

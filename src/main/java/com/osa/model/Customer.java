@@ -1,48 +1,55 @@
 package com.osa.model;
 
 import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.PrimaryKeyJoinColumn;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode(callSuper = true)
 @Entity
-public class Customer {
+@PrimaryKeyJoinColumn(name = "userId")
+public class Customer extends User {
 	
-	@Id
-	private String userId; 
 	
 	private String name;
+	
+	
 	private String email;
+	
+	
 	private String contactNo;
+	
+	
 	private LocalDate dob;
 	
+	@ManyToMany(/*fetch = FetchType.EAGER,*/ cascade = CascadeType.ALL)
+	@Fetch(value = FetchMode.SELECT)
+	@JoinTable(name = "customer_address",
+		joinColumns = @JoinColumn(
+				name = "customer_id", referencedColumnName = "userId")
+		,
+		inverseJoinColumns = @JoinColumn(
+				name = "address_id", referencedColumnName = "addressId")
+		
+	)
 	
-	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinTable(
-			name = "customer_address",
-			joinColumns = @JoinColumn(
-					name = "customer_id", referencedColumnName = "userId"
-					),
-			inverseJoinColumns = @JoinColumn(
-					name = "address_id", referencedColumnName = "addressId")
-			
-			)
-	private Set<Address> address = new HashSet<Address>();
+	private List<Address> address;
 	
 	
 }
