@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.osa.dto.CustomerDTO;
 import com.osa.dto.PaymentDTO;
+import com.osa.exception.InvalidDataException;
 import com.osa.model.Payment;
 import com.osa.service.IPaymentService;
 import com.osa.service.PaymentServiceImpl;
@@ -27,7 +28,7 @@ import com.osa.service.PaymentServiceImpl;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
-@Tag(name = "Payment ", description = "Payment")
+@Tag(name = "Payment Service API", description = "Online Saloon Appointment")
 @RequestMapping(value = "/payment")
 public class PaymentController {
 
@@ -44,6 +45,7 @@ public class PaymentController {
         URL : http://localhost:8080/payment/addPayment
         Input :
                {
+                 "paymentId":1
                  "type": "PREPAID",
                  "status":"successful",
                  "card_id":"23901",
@@ -51,28 +53,32 @@ public class PaymentController {
                }
      */
     @PostMapping(value = "/addPayment")
-    public ResponseEntity<PaymentDTO> addPayment(@Valid @RequestBody PaymentDTO paymentDTO){
+    public ResponseEntity<PaymentDTO> addPayment(@Valid @RequestBody PaymentDTO paymentDTO, BindingResult result){
+    	if (result.hasErrors()) {
+			throw new InvalidDataException("Payment data is not Valid!");
         return new ResponseEntity<PaymentDTO>(paymentService.addPayment(paymentDTO), HttpStatus.CREATED);
     }
     
-    @DeleteMapping("/remove/{id}")
+    @DeleteMapping("/removePayment/{id}")
 	public ResponseEntity<String> removePayment(@PathVariable long id) {
 		paymentService.removePayment(id);
 		return new ResponseEntity<String>("Payment with ID: "+id+" deleted successfully",HttpStatus.OK);
 	}
 	
-	@PutMapping("/update/{id}")
-	public ResponseEntity<PaymentDTO> updatePayment(@PathVariable long id, @Valid @RequestBody PaymentDTO paymentDTO) {
+	@PutMapping("/updatePayment/{id}")
+	public ResponseEntity<PaymentDTO> updatePayment(@PathVariable long id, @Valid @RequestBody PaymentDTO paymentDTO, BindingResult result) {
+		if (result.hasErrors()) {
+			throw new InvalidDataException("Payment data is not Valid!");
 		
 		return new ResponseEntity<PaymentDTO>(paymentService.updatePayment(id, paymentDTO), HttpStatus.OK);
 	}
 	
-	@GetMapping("/get/{id}")
+	@GetMapping("/getPayment/{id}")
 	public ResponseEntity<PaymentDTO> getPaymentDetails(@PathVariable long id) {
 		return new ResponseEntity<PaymentDTO>(paymentService.getPaymentDetails(id), HttpStatus.OK);
 	}
 	
-	@GetMapping("/get/all")
+	@GetMapping("/getPayments/all")
 	public ResponseEntity<List<PaymentDTO>> getAllPaymentDetails() {
 		return new ResponseEntity<List<PaymentDTO>>(paymentService.getAllPaymentDetails(),HttpStatus.OK);
 	}

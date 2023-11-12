@@ -36,4 +36,9 @@ public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler
 		return new ResponseEntity<String>(ide.getLocalizedMessage(), HttpStatus.BAD_REQUEST);
 	}
 	
+	@ExceptionHandler(PaymentNotFoundException.class)
+	public ResponseEntity<String> handlePaymentNotFoundException(PaymentNotFoundException pnfe){
+		return new ResponseEntity<String>(pnfe.getLocalizedMessage(), HttpStatus.NOT_FOUND);
+	}
+	
 }
