@@ -7,8 +7,6 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -30,7 +28,7 @@ import com.osa.enums.VisitType;
 public class Appointment {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+//	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long appointmentId;
 	
 	private String location;
@@ -43,7 +41,7 @@ public class Appointment {
 	private LocalTime prefferedTime;
 	
 	@OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(referencedColumnName = "serviceName", nullable = true)
+    @JoinColumn(name = "service_name",referencedColumnName = "serviceName", nullable = true)
 	private SalonService serviceName;
 	
 	@Transient

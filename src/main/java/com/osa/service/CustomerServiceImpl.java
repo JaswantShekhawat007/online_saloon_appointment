@@ -1,4 +1,4 @@
-	package com.osa.service;
+package com.osa.service;
 
 import java.util.ArrayList;
 import java.util.List;

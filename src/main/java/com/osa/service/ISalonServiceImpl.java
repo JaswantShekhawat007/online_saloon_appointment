@@ -27,7 +27,6 @@ public class ISalonServiceImpl implements ISalonService{
 		BeanUtils.copyProperties(serviceDTO, s_service);
 		salonRepository.save(s_service);
 		return serviceDTO;
-
 	}
 
 	@Override
@@ -50,7 +49,7 @@ public class ISalonServiceImpl implements ISalonService{
 	@Override
 	public SalonServiceDTO getService(long id) {
 		SalonServiceDTO serviceDTO = new SalonServiceDTO();
-		SalonService service = salonRepository.findById(String.valueOf(id)).get();
+		SalonService service = salonRepository.findById(id).get();
 		BeanUtils.copyProperties(service, serviceDTO);
 		//return salonRepository.findById(String.valueOf(id)).get();
 		return serviceDTO;

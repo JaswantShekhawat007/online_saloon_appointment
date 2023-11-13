@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.osa.model.SalonService;
 
 @Repository
-public interface ISalonRepository extends JpaRepository<SalonService,String>{
+public interface ISalonRepository extends JpaRepository<SalonService, Long>{
 	
 	@Query("select s.serviceName from SalonService s")
 	List<SalonService> getServicesByName();

@@ -57,7 +57,7 @@ public class AppointmentServiceImpl implements AppointmentService{
 		Customer customer = customerRepository.findById(appointmentDTO.getCustomer_userId()).get();
 		appointment.setCustomer(customer);
 		
-		SalonService s_service = salonRepository.findById(String.valueOf(appointmentDTO.getService_id())).get();
+		SalonService s_service = salonRepository.findById(appointmentDTO.getService_id()).get();
 		appointment.setServiceName(s_service);
 		
 		appointmentRepository.save(appointment);

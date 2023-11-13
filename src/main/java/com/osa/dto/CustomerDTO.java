@@ -3,12 +3,14 @@ package com.osa.dto;
 import java.time.LocalDate;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 
 import com.osa.model.Address;
+import com.osa.model.Order;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -38,5 +40,8 @@ public class CustomerDTO extends UserDTO{
 	
 	
 	private List<Address> address; 
+	
+	@Column(name = "customer")
+    List<Order> order;
 	
 }

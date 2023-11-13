@@ -13,16 +13,18 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.osa.dto.SalonServiceDTO;
+import com.osa.exception.InvalidDataException;
 import com.osa.service.ISalonService;
 
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
-@Tag(name = "Online Saloon Appointment", description = "Saloon Service Appointment API's")
+@Tag(name = "Salon Service Service API", description = "Online Saloon Appointment")
 @RequestMapping(value="/salonservice")
 public class SalonServiceController {
 	
@@ -33,8 +35,11 @@ public class SalonServiceController {
 		this.salonservice = salonservice;
 	}
 
-	@PostMapping("/add")
-	public ResponseEntity<SalonServiceDTO> addSalonService(@Valid @RequestBody SalonServiceDTO serviceDTO/*, BindingResult result*/) {
+	@PostMapping("/add-service")
+	public ResponseEntity<SalonServiceDTO> addSalonService(@Valid @RequestParam int id, @RequestBody SalonServiceDTO serviceDTO) {
+		if(serviceDTO.getServiceId() == 0) {
+			throw new InvalidDataException("Id is coming "+id+":: No data in Service "+serviceDTO.getServiceId()+"   "+serviceDTO.getServiceName());
+		}
 		return new ResponseEntity<SalonServiceDTO>(salonservice.addService(serviceDTO), HttpStatus.CREATED);
 	}
 
