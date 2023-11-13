@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -32,4 +33,7 @@ public class Card {
 	
 	
 	private String bankName;
+	
+//	@Transient
+//	private long payment_id;
 }

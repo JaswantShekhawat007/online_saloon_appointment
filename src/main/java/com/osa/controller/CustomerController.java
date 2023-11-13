@@ -1,7 +1,5 @@
 package com.osa.controller;
 
-import java.util.List;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +7,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -27,7 +24,10 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 @Tag(name = "Customer Service API", description = "Online Saloon Appointment")
 @RequestMapping(value="/customer")
 public class CustomerController {
-
+	
+	/*
+	 * Customer Module access to customer 
+	 */
 	private CustomerService customerService;
 	
 	@Autowired
@@ -36,7 +36,7 @@ public class CustomerController {
 	}
 	
 	@PostMapping("/register")
-	public ResponseEntity<CustomerDTO> registerCustomer(@Valid @RequestBody CustomerDTO customerDTO, BindingResult result) {
+	public ResponseEntity<CustomerDTO> registerCustomer(@Valid @RequestBody CustomerDTO customerDTO, BindingResult result) throws InvalidDataException {
 		if (result.hasErrors()) {
 			throw new InvalidDataException("Customer data is not Valid!");
 		}
@@ -55,16 +55,6 @@ public class CustomerController {
 			throw new InvalidDataException("Customer data is not Valid!");
 		}
 		return new ResponseEntity<CustomerDTO>(customerService.updateCustomer(id, customerDTO), HttpStatus.OK);
-	}
-	
-	@GetMapping("/get/{id}")
-	public ResponseEntity<CustomerDTO> getCustomerById(@PathVariable long id) {
-		return new ResponseEntity<CustomerDTO>(customerService.getCustomer(id), HttpStatus.OK);
-	}
-	
-	@GetMapping("/get/all")
-	public ResponseEntity<List<CustomerDTO>> getAllCustomers() {
-		return new ResponseEntity<List<CustomerDTO>>(customerService.getAllCustomer(),HttpStatus.OK);
 	}
 	
 }

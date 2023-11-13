@@ -10,20 +10,55 @@ import org.springframework.stereotype.Service;
 
 import com.osa.dto.OrderDTO;
 import com.osa.exception.OrderNotFoundException;
+import com.osa.model.Customer;
 import com.osa.model.Order;
+import com.osa.model.Payment;
+import com.osa.repository.CustomerRepository;
 import com.osa.repository.IOrderRepository;
+import com.osa.repository.IPaymentRepository;
 
 @Service
 public class OrderService implements IOrderService{
 	
-	@Autowired
+	
 	private IOrderRepository orderRepository;
+	
+	@Autowired
+	public void setOrderRepository(IOrderRepository orderRepository) {
+		this.orderRepository = orderRepository;
+	}
 
+	//Payment Repository
+	private IPaymentRepository paymentrepository;
+		
+    @Autowired
+	public void setPaymentrepository(IPaymentRepository paymentrepository) {
+		this.paymentrepository = paymentrepository;
+	}
+    
+    //Customer Repository
+    private CustomerRepository customerRepository;
+	
+	@Autowired
+	public void setCustomerRepository(CustomerRepository customerRepository) {
+		this.customerRepository = customerRepository;
+	}
+
+    
 	@Override
 	public OrderDTO addOrder(OrderDTO orderDTO) {
 		Order order = new Order();
 		BeanUtils.copyProperties(orderDTO, order);
+		
+		Customer customer = customerRepository.findById(orderDTO.getCustomer_userId()).get();
+		order.setCustomer(customer);
+		
 		orderRepository.save(order);
+		
+		Payment payment = paymentrepository.findById(orderDTO.getPayment_id()).get();
+		payment.setOrder(order);
+		paymentrepository.save(payment);
+		
 		return orderDTO;
 	}
 

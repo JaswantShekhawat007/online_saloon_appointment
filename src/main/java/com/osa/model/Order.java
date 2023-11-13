@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.osa.enums.PaymentMethod;
@@ -44,6 +45,8 @@ public class Order {
 	@JoinColumn(name = "customer_id", referencedColumnName = "userId")
 	private Customer customer;
 	
+	@Transient
+	private String customer_userId;	
 	
 	@Enumerated(EnumType.STRING)
 	private PaymentMethod paymentMethod;

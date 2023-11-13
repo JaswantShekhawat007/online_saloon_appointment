@@ -63,15 +63,7 @@ public class PaymentController {
 		return new ResponseEntity<PaymentDTO>(paymentService.updatePayment(id, paymentDTO), HttpStatus.OK);
 	}
 	
-	@GetMapping("/get/{id}")
-	public ResponseEntity<PaymentDTO> getPaymentDetails(@PathVariable long id) {
-		return new ResponseEntity<PaymentDTO>(paymentService.getPaymentDetails(id), HttpStatus.OK);
-	}
-	
-	@GetMapping("/get/all")
-	public ResponseEntity<List<PaymentDTO>> getAllPaymentDetails() {
-		return new ResponseEntity<List<PaymentDTO>>(paymentService.getAllPaymentDetails(),HttpStatus.OK);
-	}
+
 
 
 

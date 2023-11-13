@@ -6,6 +6,8 @@ import java.time.LocalTime;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.NotEmpty;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.osa.enums.VisitType;
 
 import lombok.AllArgsConstructor;
@@ -33,13 +35,18 @@ public class AppointmentDTO {
 	@Future(message = "Invalid Preffered Time")
 	private LocalTime prefferedTime;
 	
-//	@JsonIgnore
-//	private SalonServiceDTO serviceName;
-//	
-//	@JsonIgnore
-//	private CustomerDTO customer;
-//	
-//	@JsonIgnore
-//	private PaymentDTO payment;
+	@JsonIgnore
+	private SalonServiceDTO serviceName;
+	
+	private long service_id;
+	
+	@JsonIgnore
+	private CustomerDTO customer;
+	
+	@JsonIgnore
+	private PaymentDTO payment;
+	
+	
+	private String customer_userId;
 	
 }

@@ -20,12 +20,11 @@ import lombok.NoArgsConstructor;
 public class SalonService {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long serviceId;
 	
 	
-	@Enumerated(EnumType.STRING)
-	private ServiceName serviceName;
+	//@Enumerated(EnumType.STRING)
+	private String serviceName;
 	
 	
 	private String servicePrice;

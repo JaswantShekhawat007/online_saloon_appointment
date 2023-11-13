@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.Transient;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -41,10 +42,12 @@ public class Appointment {
 	
 	private LocalTime prefferedTime;
 	
-	@JsonIgnore
 	@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(referencedColumnName = "serviceName", nullable = true)
 	private SalonService serviceName;
+	
+	@Transient
+	private long service_id;
 	
 	//One to Many Relationship Between Customer and Appointment
 	@JsonIgnore
@@ -52,11 +55,16 @@ public class Appointment {
 	@JoinColumn(name = "customer_id", referencedColumnName = "userId", nullable = true)
 	private Customer customer;
 	
+	@Transient
+	private String customer_userId;
+	
 	//Mapping Appointment and Payment Entity
 	@JsonIgnore
 	@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "payment_id", referencedColumnName = "paymentId", nullable = true)
 	private Payment payment;
+	
+	
 	
 //	@JsonIgnore
 //	@OneToOne(cascade = CascadeType.ALL)

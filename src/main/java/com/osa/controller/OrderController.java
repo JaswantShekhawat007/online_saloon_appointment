@@ -22,16 +22,16 @@ import com.osa.service.IOrderService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
-@Tag(name= "Online Saloon Appointment", description= "Order Service API's")
+@Tag(name= "Online Order Appointment", description= "Order Service API's")
 @RequestMapping(value = "/order")
 public class OrderController {
 	
 	private IOrderService orderService;
+	
 	@Autowired
-	public void setOrderservice(IOrderService orderservice) {
+	public void setOrderService(IOrderService orderService) {
 		this.orderService = orderService;
 	}
-
 
 	@PostMapping(value= "/add")
 	public ResponseEntity<OrderDTO> addOrder(@Valid @RequestBody OrderDTO orderDTO){
@@ -49,15 +49,5 @@ public class OrderController {
 		return new ResponseEntity<OrderDTO>(orderService.updateOrder(id,orderDTO), HttpStatus.OK);
 	}
 	
-	@GetMapping(value= "/get/{id}")
-	public ResponseEntity<OrderDTO> getOrderDetails(@PathVariable Long id) throws OrderNotFoundException{
-		
-		return new ResponseEntity<OrderDTO>(orderService.getOrderDetails(id), HttpStatus.OK);
-	}
-	
-	@GetMapping(value= "/get/all")
-	public ResponseEntity<List<OrderDTO>> getAllOrders(){
-		return new ResponseEntity<List<OrderDTO>>(orderService.getAllOrders(), HttpStatus.OK);
-	}
 
 }

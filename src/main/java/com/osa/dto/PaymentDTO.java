@@ -29,4 +29,6 @@ public class PaymentDTO {
 	
 	@Valid
 	private CardDTO card;
+	
+	private long appointmentId;
 }

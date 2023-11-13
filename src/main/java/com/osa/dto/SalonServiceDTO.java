@@ -17,12 +17,12 @@ public class SalonServiceDTO {
 	@NotEmpty
 	private long serviceId;
 	
-	private ServiceName serviceName;
+	private String serviceName;
 	
 	@NotEmpty
 	private String servicePrice;
 	
-	@NotEmpty()
+	@NotEmpty
 	private String serviceDuration;
 	
 	@NotNull
