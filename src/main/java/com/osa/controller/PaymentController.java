@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
+import com.osa.dto.CardDTO;
 import com.osa.dto.PaymentDTO;
 import com.osa.service.PaymentServiceImpl;
 
@@ -25,12 +25,8 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 public class PaymentController {
 
 
-    private PaymentServiceImpl paymentService;
-
-    @Autowired
-    public void setPaymentService(PaymentServiceImpl paymentService) {
-        this.paymentService = paymentService;
-    }
+	 @Autowired
+	 private PaymentServiceImpl paymentService;
 
 
     /*
@@ -43,11 +39,14 @@ public class PaymentController {
                 
                }
      */
-    @PostMapping(value = "/addPayment")
-    public ResponseEntity<PaymentDTO> addPayment(@Valid @RequestBody PaymentDTO paymentDTO){
-        return new ResponseEntity<PaymentDTO>(paymentService.addPayment(paymentDTO), HttpStatus.CREATED);
-    }
-    
+	 @PostMapping("/add")
+	public ResponseEntity<Object> addPayment(@RequestBody PaymentDTO paymentDTO) {
+		ResponseEntity<Object> response=null;
+		PaymentDTO p= paymentService.addPayment(paymentDTO);
+		response = new ResponseEntity<Object>(p,HttpStatus.CREATED);
+		return response;
+	}
+
     @DeleteMapping("/remove/{id}")
 	public ResponseEntity<String> removePayment(@PathVariable long id) {
 		paymentService.removePayment(id);
