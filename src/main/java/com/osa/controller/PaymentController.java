@@ -32,11 +32,17 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 public class PaymentController {
 
 
+<<<<<<< HEAD
    
 
     @Autowired
    private PaymentServiceImpl paymentService;
     
+=======
+	 @Autowired
+	 private PaymentServiceImpl paymentService;
+
+>>>>>>> 48af7718bbc8b6b8d60db9ab2bf4097fea03b192
 
     /*
         URL : http://localhost:8080/payment/addPayment
@@ -49,6 +55,7 @@ public class PaymentController {
                 
                }
      */
+<<<<<<< HEAD
     @PostMapping("/add")
 	public ResponseEntity<Object> addPayment(@RequestBody PaymentDTO paymentDTO) {
 		ResponseEntity<Object> response=null;
@@ -58,6 +65,17 @@ public class PaymentController {
 	}
     
     @DeleteMapping("/removePayment/{id}")
+=======
+	 @PostMapping("/add")
+	public ResponseEntity<Object> addPayment(@RequestBody PaymentDTO paymentDTO) {
+		ResponseEntity<Object> response=null;
+		PaymentDTO p= paymentService.addPayment(paymentDTO);
+		response = new ResponseEntity<Object>(p,HttpStatus.CREATED);
+		return response;
+	}
+
+    @DeleteMapping("/remove/{id}")
+>>>>>>> 48af7718bbc8b6b8d60db9ab2bf4097fea03b192
 	public ResponseEntity<String> removePayment(@PathVariable long id) {
 		paymentService.removePayment(id);
 		return new ResponseEntity<String>("Payment with ID: "+id+" deleted successfully",HttpStatus.OK);

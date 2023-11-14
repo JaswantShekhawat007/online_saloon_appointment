@@ -24,7 +24,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
 @Tag(name = "Admin Service API", description = "Online Saloon Appointment")
-@RequestMapping(value="/admini")
+@RequestMapping(value="/admin")
 public class AdminController {
 	
 	/*
@@ -104,9 +104,12 @@ public class AdminController {
 		return new ResponseEntity<PaymentDTO>(paymentService.getPaymentDetails(id), HttpStatus.OK);
 	}
 	
-	@GetMapping("/get-payment/all")
-	public ResponseEntity<List<PaymentDTO>> getAllPaymentDetails() {
-		return new ResponseEntity<List<PaymentDTO>>(paymentService.getAllPaymentDetails(),HttpStatus.OK);
+	@GetMapping("/get/all")
+	public ResponseEntity<Object> getAllPaymentDetails(){
+		ResponseEntity<Object> response = null;
+		List<PaymentDTO> lp= paymentService.getAllPaymentDetails();
+		response=new ResponseEntity<Object>(lp,HttpStatus.OK);
+		return response;
 	}
 	
 }
