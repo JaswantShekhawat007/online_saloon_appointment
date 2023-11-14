@@ -4,14 +4,18 @@ import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -25,8 +29,9 @@ import lombok.NoArgsConstructor;
 @Entity
 @PrimaryKeyJoinColumn(name = "userId")
 public class Customer extends User {
-	
-	
+
+
+	@Column(name="customer_name")
 	private String name;
 	
 	
@@ -48,8 +53,7 @@ public class Customer extends User {
 				name = "address_id", referencedColumnName = "addressId")
 		
 	)
-	
+
 	private List<Address> address;
-	
-	
+		
 }

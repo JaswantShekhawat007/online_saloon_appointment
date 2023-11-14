@@ -31,15 +31,13 @@ public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler
 		return new ResponseEntity<String>(cnfe.getLocalizedMessage(), HttpStatus.NOT_FOUND);
 	}
 	
-<<<<<<< HEAD
 	@ExceptionHandler(OrderNotFoundException.class)
 	public ResponseEntity<String> handleOrderNotFoundException(OrderNotFoundException onfe) {
 		return new ResponseEntity<String>(onfe.getLocalizedMessage(),HttpStatus.NOT_FOUND);
-=======
+	}
 	@ExceptionHandler(InvalidDataException.class)
 	public ResponseEntity<String> handleInvalidDataException(InvalidDataException ide){
 		return new ResponseEntity<String>(ide.getLocalizedMessage(), HttpStatus.BAD_REQUEST);
->>>>>>> 18f3ae38708c9b3641ac4a0c44ec5ba3111ce662
 	}
 	
 }

@@ -22,7 +22,7 @@ import com.osa.service.IOrderService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
-@Tag(name= "Online Saloon Appointment", description= "Order Service API's")
+@Tag(name= "Order Controller", description= "Order Service API's")
 @RequestMapping(value = "/order")
 public class OrderController {
 	

@@ -4,7 +4,7 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/saloon_service_db
     username: postgres
-    password: CG-46331722
+    password: Capg@52898
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     show-sql: true

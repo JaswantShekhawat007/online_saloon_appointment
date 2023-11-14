@@ -23,7 +23,7 @@ public class OrderService implements IOrderService{
 	public OrderDTO addOrder(OrderDTO orderDTO) {
 		Order order = new Order();
 		BeanUtils.copyProperties(orderDTO, order);
-		orderRepository.save(order);
+		orderRepository.saveAndFlush(order);
 		return orderDTO;
 	}
 
