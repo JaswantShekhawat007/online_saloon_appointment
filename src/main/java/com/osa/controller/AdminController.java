@@ -19,7 +19,6 @@ import com.osa.service.AppointmentService;
 import com.osa.service.CustomerService;
 import com.osa.service.IOrderService;
 import com.osa.service.PaymentServiceImpl;
-import com.osa.service.UserService;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
 
@@ -39,7 +38,7 @@ public class AdminController {
 	}
 	
 	@GetMapping("/get-customer/{id}")
-	public ResponseEntity<CustomerDTO> getCustomerById(@PathVariable long id) {
+	public ResponseEntity<CustomerDTO> getCustomerById(@PathVariable String id) {
 		return new ResponseEntity<CustomerDTO>(customerService.getCustomer(id), HttpStatus.OK);
 	}
 	

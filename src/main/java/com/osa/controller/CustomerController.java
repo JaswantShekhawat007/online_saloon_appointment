@@ -44,13 +44,13 @@ public class CustomerController {
 	}
 	
 	@DeleteMapping("/delete/{id}")
-	public ResponseEntity<String> deleteCustomer(@PathVariable long id) {
+	public ResponseEntity<String> deleteCustomer(@PathVariable String id) {
 		customerService.removeCustomer(id);
 		return new ResponseEntity<String>("Customer with ID: "+id+" deleted successfully",HttpStatus.OK);
 	}
 	
 	@PutMapping("/update/{id}")
-	public ResponseEntity<CustomerDTO> updateCustomer(@PathVariable long id, @Valid @RequestBody CustomerDTO customerDTO, BindingResult result) {
+	public ResponseEntity<CustomerDTO> updateCustomer(@PathVariable String id, @Valid @RequestBody CustomerDTO customerDTO, BindingResult result) {
 		if (result.hasErrors()) {
 			throw new InvalidDataException("Customer data is not Valid!");
 		}

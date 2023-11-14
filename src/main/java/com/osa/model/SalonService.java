@@ -1,10 +1,9 @@
 package com.osa.model;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.constraints.NotEmpty;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,18 +18,16 @@ public class SalonService {
 	@Id
 	private long serviceId;
 	
+	@JsonProperty("service_name")
 	private String serviceName;
 	
-//	@NotEmpty(message="Mention price")
+	@JsonProperty("service_price")
 	private String servicePrice;
 	
-//	@NotEmpty(message = "duration")
+	@JsonProperty("service_duration")
 	private String serviceDuration;
-	
-//	@NotEmpty(message = "discount")
+
 	private long discount;	
-//	@OneToOne(mappedBy = "serviceName")
-//	private Appointment appointment;
 	
 	
 }

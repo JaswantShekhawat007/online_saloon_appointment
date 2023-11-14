@@ -1,8 +1,5 @@
 package com.osa.controller;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.osa.dto.UserDTO;
 import com.osa.exception.InvalidDataException;
+import com.osa.exception.UserNotFoundException;
 import com.osa.service.UserService;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -43,11 +41,14 @@ public class UserController {
 	
 	
 	@PostMapping("/change-password/{id}")
-	public ResponseEntity<UserDTO> changePassword(@Valid @RequestBody UserDTO userDTO, @PathVariable long id, BindingResult result) {
+	public ResponseEntity<UserDTO> changePassword(@Valid @RequestBody UserDTO userDTO, @PathVariable long id, BindingResult result) 
+			throws UserNotFoundException {
+		
 		if (result.hasErrors()) {
 			throw new InvalidDataException("Customer data is not Valid!");
 		}
 		return new ResponseEntity<UserDTO>(userService.changePassword(id, userDTO), HttpStatus.OK);
+		
 	}
 	
 	

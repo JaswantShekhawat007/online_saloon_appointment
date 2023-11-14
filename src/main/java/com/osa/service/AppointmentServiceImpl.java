@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.osa.dto.AppointmentDTO;
+import com.osa.exception.CustomerNotFoundException;
 import com.osa.model.Appointment;
 import com.osa.model.Customer;
 import com.osa.model.SalonService;
@@ -54,11 +55,12 @@ public class AppointmentServiceImpl implements AppointmentService{
 		Appointment appointment = new Appointment();
 		BeanUtils.copyProperties(appointmentDTO, appointment);
 		
-		Customer customer = customerRepository.findById(appointmentDTO.getCustomer_userId()).get();
+		Customer customer = customerRepository.findById(appointmentDTO.getCustomer_userId())
+				.orElseThrow(()->new CustomerNotFoundException("Employee With ID :"+appointmentDTO.getCustomer_userId()+" Not Exist!"));
 		appointment.setCustomer(customer);
 		
 		SalonService s_service = salonRepository.findById(appointmentDTO.getService_id()).get();
-		appointment.setServiceName(s_service);
+		appointment.setSalon_service(s_service);
 		
 		appointmentRepository.save(appointment);
 		return appointmentDTO;

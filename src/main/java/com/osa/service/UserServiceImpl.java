@@ -28,8 +28,10 @@ public class UserServiceImpl implements UserService{
 		Customer customer = new Customer();
 		User user = new User();
 		
-		if(userDTO.getUserId() == "admin" && userDTO.getPassword() == "Admin@5653") {
+		if(userDTO.getUserId() == admin.getUserId() && userDTO.getPassword() == admin.getPassword()) {
+			
 			System.out.println("Welcome Admin");
+			
 		} else if(userDTO.getUserId() == customer.getUserId() && userDTO.getPassword() == customer.getPassword()) {
 
 			System.out.println("Welcome Customer");
@@ -45,7 +47,7 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public UserDTO changePassword(long id, UserDTO userDTO) {
+	public UserDTO changePassword(long id, UserDTO userDTO) throws UserNotFoundException {
 		User user = userRepository.findById(String.valueOf(id)).orElseThrow(()->new UserNotFoundException("User With ID :"+id+" Not Exist!"));
 		
 		user.setPassword(userDTO.getPassword());

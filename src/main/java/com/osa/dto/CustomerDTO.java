@@ -41,7 +41,6 @@ public class CustomerDTO extends UserDTO{
 	
 	private List<Address> address; 
 	
-	@Column(name = "customer")
-    List<Order> order;
-	
+//	@Column(name = "customer")
+//    List<Order> order;
 }

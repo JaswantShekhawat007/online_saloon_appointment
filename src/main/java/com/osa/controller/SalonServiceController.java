@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.osa.dto.SalonServiceDTO;
 import com.osa.exception.InvalidDataException;
+import com.osa.model.SalonService;
 import com.osa.service.ISalonService;
 
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
@@ -36,12 +37,22 @@ public class SalonServiceController {
 	}
 
 	@PostMapping("/add-service")
-	public ResponseEntity<SalonServiceDTO> addSalonService(@Valid @RequestParam int id, @RequestBody SalonServiceDTO serviceDTO) {
+	public ResponseEntity<SalonServiceDTO> addSalonService(@Valid @RequestBody SalonServiceDTO serviceDTO) {
 		if(serviceDTO.getServiceId() == 0) {
-			throw new InvalidDataException("Id is coming "+id+":: No data in Service "+serviceDTO.getServiceId()+"   "+serviceDTO.getServiceName());
+			throw new InvalidDataException("No data provided");
 		}
 		return new ResponseEntity<SalonServiceDTO>(salonservice.addService(serviceDTO), HttpStatus.CREATED);
 	}
+	
+	
+	
+//	@PostMapping("add-service")
+//	public ResponseEntity<SalonService> addSalonService(@Valid @RequestBody SalonService service) {
+//		if(service.getServiceId() == 0) {
+//			throw new InvalidDataException("No data provided");
+//		}
+//		return new ResponseEntity<SalonService>(salonservice.addService(service), HttpStatus.CREATED);
+//	}
 
 	@DeleteMapping("/delete/{id}")
 	public ResponseEntity<String> deleteSalonService(@PathVariable long id) {

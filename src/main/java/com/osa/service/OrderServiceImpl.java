@@ -18,7 +18,7 @@ import com.osa.repository.IOrderRepository;
 import com.osa.repository.IPaymentRepository;
 
 @Service
-public class OrderService implements IOrderService{
+public class OrderServiceImpl implements IOrderService{
 	
 	
 	private IOrderRepository orderRepository;

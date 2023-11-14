@@ -6,6 +6,9 @@ import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.osa.model.Payment;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -34,7 +37,10 @@ public class CardDTO {
 	
 	@NotEmpty
 	private String bankName;
-
+	
+	@JsonIgnore
+	private Payment payment;
+	
 //	private long payment_id;
 	
 }
