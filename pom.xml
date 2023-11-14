@@ -50,6 +50,11 @@
 		   <artifactId>springdoc-openapi-ui</artifactId>
 		   <version>1.6.15</version>
 		</dependency>
+		
+		<dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-databind</artifactId>
+		</dependency>
 		<!-- https://mvnrepository.com/artifact/io.springfox/springfox-swagger-ui -->
 		<dependency>
 		    <groupId>io.springfox</groupId>

@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.osa.enums.PaymentStatus;
@@ -42,7 +43,10 @@ public class Payment {
 	
 	@JsonIgnore
 	@OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "order_id", referencedColumnName = "orderId")
+    @JoinColumn(name = "order_id", referencedColumnName = "orderId", nullable = true)
 	Order order;
+	
+	@Transient
+	private long appointmentId;
 	
 }

@@ -6,6 +6,8 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import com.osa.dto.UserDTO;
+import com.osa.exception.CustomerNotFoundException;
+import com.osa.exception.UserNotFoundException;
 import com.osa.model.Admin;
 import com.osa.model.Customer;
 import com.osa.model.User;
@@ -26,11 +28,14 @@ public class UserServiceImpl implements UserService{
 		Customer customer = new Customer();
 		User user = new User();
 		
-		if(userDTO.getUserId() == "admin" && userDTO.getPassword() == "Admin@5653") {
+		if(userDTO.getUserId() == admin.getUserId() && userDTO.getPassword() == admin.getPassword()) {
+			
 			System.out.println("Welcome Admin");
-		} else if(userDTO.getUserId() == customer.getUserId() && userDTO.getPassword() == userDTO.getPassword()) {
-//			System.out.println("Welcome Customer");
-//			HttpSession session = request.getSession();
+			
+		} else if(userDTO.getUserId() == customer.getUserId() && userDTO.getPassword() == customer.getPassword()) {
+
+			System.out.println("Welcome Customer");
+
 		}
 		return userDTO;
 	}
@@ -42,8 +47,12 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public UserDTO changePassword(long id, UserDTO userDTO) {
-		// TODO Auto-generated method stub
+	public UserDTO changePassword(long id, UserDTO userDTO) throws UserNotFoundException {
+		User user = userRepository.findById(String.valueOf(id)).orElseThrow(()->new UserNotFoundException("User With ID :"+id+" Not Exist!"));
+		
+		user.setPassword(userDTO.getPassword());
+		userRepository.save(user);
+		
 		return null;
 	}
 

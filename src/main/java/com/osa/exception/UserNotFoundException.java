@@ -1,13 +1,13 @@
 package com.osa.exception;
 
-public class CustomerNotFoundException extends RuntimeException {
+public class UserNotFoundException extends RuntimeException {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public CustomerNotFoundException(String message) {
+	public UserNotFoundException(String message) {
 		super(message);
 		// TODO Auto-generated constructor stub
 	}

@@ -8,11 +8,11 @@ public interface CustomerService {
 	
 	CustomerDTO addCustomer(CustomerDTO customerDTO);
 	
-	CustomerDTO removeCustomer(long custId);
+	CustomerDTO removeCustomer(String custId);
 	
-	CustomerDTO updateCustomer(long custId, CustomerDTO customerDTO);
+	CustomerDTO updateCustomer(String custId, CustomerDTO customerDTO);
 	
-	CustomerDTO getCustomer(long custId);
+	CustomerDTO getCustomer(String custId);
 	
 	List<CustomerDTO> getAllCustomer();
 	

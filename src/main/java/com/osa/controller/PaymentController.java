@@ -1,14 +1,11 @@
 package com.osa.controller;
 
-import java.util.List;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -63,15 +60,7 @@ public class PaymentController {
 		return new ResponseEntity<PaymentDTO>(paymentService.updatePayment(id, paymentDTO), HttpStatus.OK);
 	}
 	
-	@GetMapping("/get/{id}")
-	public ResponseEntity<PaymentDTO> getPaymentDetails(@PathVariable long id) {
-		return new ResponseEntity<PaymentDTO>(paymentService.getPaymentDetails(id), HttpStatus.OK);
-	}
-	
-	@GetMapping("/get/all")
-	public ResponseEntity<List<PaymentDTO>> getAllPaymentDetails() {
-		return new ResponseEntity<List<PaymentDTO>>(paymentService.getAllPaymentDetails(),HttpStatus.OK);
-	}
+
 
 
 

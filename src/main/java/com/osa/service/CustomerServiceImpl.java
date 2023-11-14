@@ -31,7 +31,7 @@ public class CustomerServiceImpl implements CustomerService{
 	}
 
 	@Override
-	public CustomerDTO removeCustomer(long custId) {
+	public CustomerDTO removeCustomer(String custId) {
 		CustomerDTO customerDTO = getCustomer(custId);
 		Customer customer = new Customer();
 		BeanUtils.copyProperties(customerDTO, customer);
@@ -40,19 +40,24 @@ public class CustomerServiceImpl implements CustomerService{
 	}
 
 	@Override
-	public CustomerDTO updateCustomer(long custId, CustomerDTO customerDTO) {
-		customerRepository.findById(String.valueOf(custId))
+	public CustomerDTO updateCustomer(String custId, CustomerDTO customerDTO) {
+		Customer customer = customerRepository.findById(custId)
 				.orElseThrow(()->new CustomerNotFoundException("Employee With ID :"+custId+" Not Exist!"));
-		Customer customer = new Customer();
-		BeanUtils.copyProperties(customerDTO, customer);
+		
+		customer.setName(customerDTO.getName());
+		customer.setContactNo(customerDTO.getContactNo());
+		customer.setDob(customerDTO.getDob());
+		customer.setEmail(customerDTO.getEmail());
+		customer.setAddress(customerDTO.getAddress());
+				
 		customerRepository.save(customer);
 		return customerDTO;
 	}
 
 	@Override
-	public CustomerDTO getCustomer(long custId) {
+	public CustomerDTO getCustomer(String custId) {
 		CustomerDTO customerDTO = new CustomerDTO() ;
-		Customer customer = customerRepository.findById(String.valueOf(custId))
+		Customer customer = customerRepository.findById(custId)
 				.orElseThrow(()->new CustomerNotFoundException("Employee With ID :"+custId+" Not Exist!"));
 		BeanUtils.copyProperties(customer, customerDTO);
 		return customerDTO;

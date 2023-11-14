@@ -1,4 +1,4 @@
-package com.osa.exception;
+	package com.osa.exception;
 
 public class PaymentNotFoundException extends RuntimeException{
     /**

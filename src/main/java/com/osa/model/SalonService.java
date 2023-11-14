@@ -1,13 +1,9 @@
 package com.osa.model;
 
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import com.osa.enums.ServiceName;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,24 +16,18 @@ import lombok.NoArgsConstructor;
 public class SalonService {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long serviceId;
 	
+	@JsonProperty("service_name")
+	private String serviceName;
 	
-	@Enumerated(EnumType.STRING)
-	private ServiceName serviceName;
-	
-	
+	@JsonProperty("service_price")
 	private String servicePrice;
 	
-	
+	@JsonProperty("service_duration")
 	private String serviceDuration;
-	
-	
-	private int discount;
-	
-//	@OneToOne(mappedBy = "serviceName")
-//	private Appointment appointment;
+
+	private long discount;	
 	
 	
 }
