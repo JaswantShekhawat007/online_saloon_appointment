@@ -1,11 +1,14 @@
 package com.osa.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,11 +22,7 @@ import com.osa.service.IOrderService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
-<<<<<<< HEAD
-@Tag(name= "Order Controller", description= "Order Service API's")
-=======
-@Tag(name= "Order Service API", description= "Online Order Appointment")
->>>>>>> 2845cb1dc5a94995c9b0e89081c61302729671fd
+@Tag(name= "Order Service API", description= "Online Saloon Appointment")
 @RequestMapping(value = "/order")
 public class OrderController {
 	
@@ -48,6 +47,16 @@ public class OrderController {
 	@PostMapping(value= "/update/{id}")
 	public ResponseEntity<OrderDTO> updateOder(@PathVariable Long id, @RequestBody OrderDTO orderDTO) throws OrderNotFoundException{
 		return new ResponseEntity<OrderDTO>(orderService.updateOrder(id,orderDTO), HttpStatus.OK);
+	}
+	
+	@GetMapping(value="/get_order/{id}")
+	public ResponseEntity<OrderDTO> getOrderDetails(@PathVariable long id) throws OrderNotFoundException{
+		return new ResponseEntity<OrderDTO>(orderService.getOrderDetails(id), HttpStatus.OK);
+	}
+	
+	@GetMapping(value="/get_all_orders")
+	public ResponseEntity<List<OrderDTO>> getAllOrders(){
+		return new ResponseEntity<List<OrderDTO>>(orderService.getAllOrders(),HttpStatus.OK);
 	}
 	
 

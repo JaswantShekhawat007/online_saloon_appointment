@@ -49,9 +49,7 @@ public class OrderServiceImpl implements IOrderService{
 	public OrderDTO addOrder(OrderDTO orderDTO) {
 		Order order = new Order();
 		BeanUtils.copyProperties(orderDTO, order);
-<<<<<<< HEAD:src/main/java/com/osa/service/OrderService.java
 		orderRepository.saveAndFlush(order);
-=======
 		
 		Customer customer = customerRepository.findById(orderDTO.getCustomer_userId()).get();
 		order.setCustomer(customer);
@@ -61,8 +59,7 @@ public class OrderServiceImpl implements IOrderService{
 		Payment payment = paymentrepository.findById(orderDTO.getPayment_id()).get();
 		payment.setOrder(order);
 		paymentrepository.save(payment);
-		
->>>>>>> 2845cb1dc5a94995c9b0e89081c61302729671fd:src/main/java/com/osa/service/OrderServiceImpl.java
+
 		return orderDTO;
 	}
 

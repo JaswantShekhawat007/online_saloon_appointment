@@ -55,9 +55,6 @@ public class Customer extends User {
 	)
 
 	private List<Address> address;
-<<<<<<< HEAD
-		
-=======
+
 	
->>>>>>> 2845cb1dc5a94995c9b0e89081c61302729671fd
 }

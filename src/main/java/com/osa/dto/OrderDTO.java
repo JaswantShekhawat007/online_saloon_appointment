@@ -10,6 +10,7 @@ import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.osa.enums.PaymentMethod;
 
 import lombok.AllArgsConstructor;
@@ -30,14 +31,14 @@ public class OrderDTO {
 	@FutureOrPresent(message = "Invalid Billing Date")
 	private LocalDate billingDate;
 	
-<<<<<<< HEAD
+
 	@Valid
+	@JsonIgnore
 	private CustomerDTO customer;
-=======
+
 //	@Valid
 //	private CustomerDTO customer;
 	private String customer_userId;
->>>>>>> 2845cb1dc5a94995c9b0e89081c61302729671fd
 	
 	@NotEmpty
 	@Enumerated(EnumType.STRING)
