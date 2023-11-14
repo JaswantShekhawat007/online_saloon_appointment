@@ -52,11 +52,11 @@ public class Appointment {
 	@JoinColumn(name = "customer_id", referencedColumnName = "userId", nullable = true)
 	private Customer customer;
 	
-	//Mapping Appointment and Payment Entity
-	@JsonIgnore
-	@OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "payment_id", referencedColumnName = "paymentId", nullable = true)
-	private Payment payment;
+//	//Mapping Appointment and Payment Entity
+//	@JsonIgnore
+//	@OneToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "payment_id", referencedColumnName = "paymentId", nullable = true)
+//	private Payment payment;
 	
 //	@JsonIgnore
 //	@OneToOne(cascade = CascadeType.ALL)

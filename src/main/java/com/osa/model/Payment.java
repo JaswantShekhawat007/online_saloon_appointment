@@ -1,48 +1,44 @@
 package com.osa.model;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.osa.enums.PaymentStatus;
-import com.osa.enums.PaymentType;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Entity
+@Table(name="payments")
 public class Payment {
-	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name="payment_id")
 	private long paymentId;
 	
 	
-	@Enumerated(EnumType.STRING)
-	private PaymentType type;
+	@Column(name="type")
+	private String type;
 	
 	
-	@Enumerated(EnumType.STRING)
-	private PaymentStatus status;
+	@Column(name="status")
+	private String status;
+
+		
+	@OneToOne (cascade = CascadeType.ALL)
+	@JoinColumn(name="id")
 	
-	@OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "card_id", referencedColumnName = "id")
 	private Card card;
-	
-	@JsonIgnore
-	@OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "order_id", referencedColumnName = "orderId")
-	Order order;
-	
+
 }

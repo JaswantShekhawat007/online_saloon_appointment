@@ -1,32 +1,42 @@
 package com.osa.dto;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import com.osa.enums.PaymentStatus;
 import com.osa.enums.PaymentType;
+import com.osa.model.Card;
+import com.osa.model.Payment;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
+
 public class PaymentDTO {
-	
 	private long paymentId;
 	
 	@NotEmpty(message = "Payment Type Required")
-	@Enumerated(EnumType.STRING)
-	private PaymentType type;
+	private String type;
 	
 	@NotEmpty(message = "Payment Status Required")
-	@Enumerated(EnumType.STRING)
-	private PaymentStatus status;
+	private String status;
+
 	
-	@Valid
-	private CardDTO card;
+	private Card card;
+
 }

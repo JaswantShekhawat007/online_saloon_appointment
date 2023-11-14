@@ -4,7 +4,9 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import com.osa.dto.CardDTO;
 import com.osa.dto.PaymentDTO;
+import com.osa.model.Card;
 import com.osa.model.Payment;
 
 public interface IPaymentService {

@@ -2,9 +2,9 @@ server:
   port: 8085
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/saloon_service_db1
+    url: jdbc:postgresql://localhost:5432/saloon_service_db
     username: postgres
-    password: CG-46331722
+    password: N512
     
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect

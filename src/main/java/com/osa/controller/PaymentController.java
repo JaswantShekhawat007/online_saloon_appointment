@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
+import com.osa.dto.CardDTO;
 import com.osa.dto.PaymentDTO;
 import com.osa.exception.InvalidDataException;
 import com.osa.model.Payment;
@@ -32,13 +32,11 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 public class PaymentController {
 
 
-    private PaymentServiceImpl paymentService;
+   
 
     @Autowired
-    public void setPaymentService(PaymentServiceImpl paymentService) {
-        this.paymentService = paymentService;
-    }
-
+   private PaymentServiceImpl paymentService;
+    
 
     /*
         URL : http://localhost:8080/payment/addPayment
@@ -51,13 +49,13 @@ public class PaymentController {
                 
                }
      */
-    @PostMapping(value = "/addPayment")
-    public ResponseEntity<PaymentDTO> addPayment(@Valid @RequestBody PaymentDTO paymentDTO, BindingResult result){
-    	if (result.hasErrors()) {
-			throw new InvalidDataException("Payment data is not Valid!");
-    	}
-        return new ResponseEntity<PaymentDTO>(paymentService.addPayment(paymentDTO), HttpStatus.CREATED);
-    }
+    @PostMapping("/add")
+	public ResponseEntity<Object> addPayment(@RequestBody PaymentDTO paymentDTO) {
+		ResponseEntity<Object> response=null;
+		PaymentDTO p= paymentService.addPayment(paymentDTO);
+		response = new ResponseEntity<Object>(p,HttpStatus.CREATED);
+		return response;
+	}
     
     @DeleteMapping("/removePayment/{id}")
 	public ResponseEntity<String> removePayment(@PathVariable long id) {
@@ -79,9 +77,12 @@ public class PaymentController {
 		return new ResponseEntity<PaymentDTO>(paymentService.getPaymentDetails(id), HttpStatus.OK);
 	}
 	
-	@GetMapping("/getPayments/all")
-	public ResponseEntity<List<PaymentDTO>> getAllPaymentDetails() {
-		return new ResponseEntity<List<PaymentDTO>>(paymentService.getAllPaymentDetails(),HttpStatus.OK);
+	@GetMapping("/get")
+	public ResponseEntity<Object> getAllPaymentDetails(){
+		ResponseEntity<Object> response = null;
+		List<PaymentDTO> lp= paymentService.getAllPaymentDetails();
+		response=new ResponseEntity<Object>(lp,HttpStatus.OK);
+		return response;
 	}
 
 
