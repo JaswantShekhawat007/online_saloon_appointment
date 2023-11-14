@@ -15,23 +15,70 @@ import com.osa.dto.CustomerDTO;
 import com.osa.dto.PaymentDTO;
 import com.osa.exception.OrderNotFoundException;
 import com.osa.exception.PaymentNotFoundException;
+<<<<<<< HEAD
 import com.osa.model.Card;
 import com.osa.model.Customer;
 import com.osa.model.Order;
+=======
+import com.osa.model.Appointment;
+import com.osa.model.Card;
+>>>>>>> 2845cb1dc5a94995c9b0e89081c61302729671fd
 import com.osa.model.Payment;
+import com.osa.repository.AppointmentRepository;
+import com.osa.repository.CardRepository;
 import com.osa.repository.IPaymentRepository;
 
 @Service
 public class PaymentServiceImpl implements IPaymentService{
+<<<<<<< HEAD
 	@Autowired
 	private IPaymentRepository paymentrepository;
 	
+=======
+	
+	//Payment Repository
+	private IPaymentRepository paymentrepository;
+		
+    @Autowired
+	public void setPaymentrepository(IPaymentRepository paymentrepository) {
+		this.paymentrepository = paymentrepository;
+	}
+    
+    //Appointment Repository
+  	private AppointmentRepository appointmentRepository;
+  		
+  	@Autowired
+  	public void setAppointmentRepository(AppointmentRepository appointmentRepository) {
+  		this.appointmentRepository = appointmentRepository;
+  	}
+  	
+  //Payment Repository
+  	private CardRepository cardrepository;
+  	
+  	@Autowired
+	public void setCardrepository(CardRepository cardrepository) {
+		this.cardrepository = cardrepository;
+	}
+>>>>>>> 2845cb1dc5a94995c9b0e89081c61302729671fd
 
 	public PaymentDTO addPayment(PaymentDTO paymentDTO) {
 		Payment payment = new Payment();
 		BeanUtils.copyProperties(paymentDTO, payment);
-		paymentrepository.save(payment);
+		
+		Card card = new Card();
+		BeanUtils.copyProperties(paymentDTO.getCard(), card);
+		cardrepository.save(card);
 
+		paymentrepository.save(payment);
+<<<<<<< HEAD
+
+=======
+		
+		Appointment existing_appointment = appointmentRepository.findById(paymentDTO.getAppointmentId()).get();
+		existing_appointment.setPayment(payment);
+		appointmentRepository.save(existing_appointment);
+		
+>>>>>>> 2845cb1dc5a94995c9b0e89081c61302729671fd
 		return paymentDTO;
 	}
     

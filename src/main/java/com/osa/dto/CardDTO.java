@@ -6,6 +6,9 @@ import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.osa.model.Payment;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,7 +26,7 @@ public class CardDTO {
 	/*
 	 * Credit Card Number ranges between 10 to 19
 	 * Debit Card Number ranges between 14 to 16
-	 * */
+	*/
 	@NotEmpty(message = "Card Number Field Empty")
     @Size(min = 10, max = 19, message = "Invalid Card Number")
 	private String cardNumber;
@@ -34,5 +37,10 @@ public class CardDTO {
 	
 	@NotEmpty
 	private String bankName;
+	
+	@JsonIgnore
+	private Payment payment;
+	
+//	private long payment_id;
 	
 }

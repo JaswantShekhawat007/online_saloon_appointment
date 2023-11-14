@@ -7,12 +7,11 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.Transient;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -29,7 +28,7 @@ import com.osa.enums.VisitType;
 public class Appointment {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+//	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long appointmentId;
 	
 	private String location;
@@ -43,8 +42,11 @@ public class Appointment {
 	
 	@JsonIgnore
 	@OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(referencedColumnName = "serviceName", nullable = true)
-	private SalonService serviceName;
+    @JoinColumn(name = "service_name",referencedColumnName = "serviceId", nullable = true)
+	private SalonService salon_service;
+	
+	@Transient
+	private long service_id;
 	
 	//One to Many Relationship Between Customer and Appointment
 	@JsonIgnore
@@ -52,11 +54,24 @@ public class Appointment {
 	@JoinColumn(name = "customer_id", referencedColumnName = "userId", nullable = true)
 	private Customer customer;
 	
+<<<<<<< HEAD
 //	//Mapping Appointment and Payment Entity
 //	@JsonIgnore
 //	@OneToOne(cascade = CascadeType.ALL)
 //    @JoinColumn(name = "payment_id", referencedColumnName = "paymentId", nullable = true)
 //	private Payment payment;
+=======
+	@Transient
+	private String customer_userId;
+	
+	//Mapping Appointment and Payment Entity
+	@JsonIgnore
+	@OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "payment_id", referencedColumnName = "paymentId", nullable = true)
+	private Payment payment;
+>>>>>>> 2845cb1dc5a94995c9b0e89081c61302729671fd
+	
+	
 	
 //	@JsonIgnore
 //	@OneToOne(cascade = CascadeType.ALL)

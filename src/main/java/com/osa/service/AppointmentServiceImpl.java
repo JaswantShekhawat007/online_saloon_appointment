@@ -5,28 +5,63 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.osa.dto.AppointmentDTO;
+import com.osa.exception.CustomerNotFoundException;
 import com.osa.model.Appointment;
+import com.osa.model.Customer;
+import com.osa.model.SalonService;
 import com.osa.repository.AppointmentRepository;
+import com.osa.repository.CustomerRepository;
+import com.osa.repository.ISalonRepository;
 
 @Service
 public class AppointmentServiceImpl implements AppointmentService{
-	
+
+	//Appointment Repository
 	private AppointmentRepository appointmentRepository;
 		
 	@Autowired
 	public void setAppointmentRepository(AppointmentRepository appointmentRepository) {
 		this.appointmentRepository = appointmentRepository;
 	}
+	
+	//Customer Repository
+	private CustomerRepository customerRepository;
+	
+	@Autowired
+	public void setCustomerRepository(CustomerRepository customerRepository) {
+		this.customerRepository = customerRepository;
+	}
+	
+	//SalonService Repository
+	private ISalonRepository salonRepository;
 
+	@Autowired
+	public void setSalonRepository(ISalonRepository salonRepository) {
+		this.salonRepository = salonRepository;
+	}
+
+	
 	@Override
 	public AppointmentDTO addAppointment(AppointmentDTO appointmentDTO) {
+		
 		Appointment appointment = new Appointment();
 		BeanUtils.copyProperties(appointmentDTO, appointment);
+		
+		Customer customer = customerRepository.findById(appointmentDTO.getCustomer_userId())
+				.orElseThrow(()->new CustomerNotFoundException("Employee With ID :"+appointmentDTO.getCustomer_userId()+" Not Exist!"));
+		appointment.setCustomer(customer);
+		
+		SalonService s_service = salonRepository.findById(appointmentDTO.getService_id()).get();
+		appointment.setSalon_service(s_service);
+		
 		appointmentRepository.save(appointment);
 		return appointmentDTO;
 	}

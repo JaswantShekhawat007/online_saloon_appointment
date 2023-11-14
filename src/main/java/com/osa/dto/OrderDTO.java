@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.Transient;
 import javax.validation.Valid;
 import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.NotEmpty;
@@ -29,12 +30,14 @@ public class OrderDTO {
 	@FutureOrPresent(message = "Invalid Billing Date")
 	private LocalDate billingDate;
 	
-	@Valid
+//	@Valid
 //	private CustomerDTO customer;
+	private String customer_userId;
 	
 	@NotEmpty
 	@Enumerated(EnumType.STRING)
 	private PaymentMethod paymentMethod;
 
+	private long payment_id;
 	
 }

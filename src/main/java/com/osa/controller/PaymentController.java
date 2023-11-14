@@ -1,7 +1,5 @@
 package com.osa.controller;
 
-import java.util.List;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +7,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -71,6 +68,7 @@ public class PaymentController {
 		return new ResponseEntity<PaymentDTO>(paymentService.updatePayment(id, paymentDTO), HttpStatus.OK);
 	}
 	
+<<<<<<< HEAD
 	
 	@GetMapping("/getPayment/{id}")
 	public ResponseEntity<PaymentDTO> getPaymentDetails(@PathVariable long id) {
@@ -84,6 +82,9 @@ public class PaymentController {
 		response=new ResponseEntity<Object>(lp,HttpStatus.OK);
 		return response;
 	}
+=======
+
+>>>>>>> 2845cb1dc5a94995c9b0e89081c61302729671fd
 
 
 

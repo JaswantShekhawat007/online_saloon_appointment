@@ -37,6 +37,13 @@ public class PaymentDTO {
 	private String status;
 
 	
+<<<<<<< HEAD
 	private Card card;
 
+=======
+	@Valid
+	private CardDTO card;
+	
+	private long appointmentId;
+>>>>>>> 2845cb1dc5a94995c9b0e89081c61302729671fd
 }

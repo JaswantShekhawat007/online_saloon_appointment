@@ -1,9 +1,8 @@
 package com.osa.dto;
 
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
 
-import com.osa.enums.ServiceName;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,19 +12,23 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class SalonServiceDTO {
-	
-	@NotEmpty
+
 	private long serviceId;
 	
-	private ServiceName serviceName;
+	@NotBlank(message = "service name empty")
+	@JsonProperty("service_name")
+	private String serviceName;
 	
-	@NotEmpty
+	@NotBlank(message="Mention price")
+	@JsonProperty("service_price")
 	private String servicePrice;
 	
-	@NotEmpty()
+	@NotBlank(message = "duration")
+	@JsonProperty("service_duration")
 	private String serviceDuration;
 	
-	@NotNull
-	private int discount;
+	@NotBlank(message = "discount")
+	private long discount;	
+	
 	
 }
