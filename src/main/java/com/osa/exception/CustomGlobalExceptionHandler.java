@@ -31,34 +31,29 @@ public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler
 		return new ResponseEntity<String>(cnfe.getLocalizedMessage(), HttpStatus.NOT_FOUND);
 	}
 	
-<<<<<<< HEAD
+
 	@ExceptionHandler(OrderNotFoundException.class)
 	public ResponseEntity<String> handleOrderNotFoundException(OrderNotFoundException onfe) {
 		return new ResponseEntity<String>(onfe.getLocalizedMessage(),HttpStatus.NOT_FOUND);
 		
 	}
-=======
 
-	@ExceptionHandler(OrderNotFoundException.class)
-	public ResponseEntity<String> handleOrderNotFoundException(OrderNotFoundException onfe) {
-		return new ResponseEntity<String>(onfe.getLocalizedMessage(),HttpStatus.NOT_FOUND);
-	}
 
->>>>>>> 2845cb1dc5a94995c9b0e89081c61302729671fd
+
 	@ExceptionHandler(InvalidDataException.class)
 	public ResponseEntity<String> handleInvalidDataException(InvalidDataException ide){
 		return new ResponseEntity<String>(ide.getLocalizedMessage(), HttpStatus.BAD_REQUEST);
 	}
 	
-<<<<<<< HEAD
+
 	@ExceptionHandler(PaymentNotFoundException.class)
 	public ResponseEntity<String> handlePaymentNotFoundException(PaymentNotFoundException pnfe){
 		return new ResponseEntity<String>(pnfe.getLocalizedMessage(), HttpStatus.NOT_FOUND);
-=======
+	}
 	@ExceptionHandler(UserNotFoundException.class)
 	public ResponseEntity<String> handleUserNotFoundException(UserNotFoundException unfe){
 		return new ResponseEntity<String>(unfe.getLocalizedMessage(), HttpStatus.BAD_REQUEST);
->>>>>>> 2845cb1dc5a94995c9b0e89081c61302729671fd
+
 	}
 	
 }

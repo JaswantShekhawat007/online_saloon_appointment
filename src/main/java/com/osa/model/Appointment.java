@@ -54,13 +54,12 @@ public class Appointment {
 	@JoinColumn(name = "customer_id", referencedColumnName = "userId", nullable = true)
 	private Customer customer;
 	
-<<<<<<< HEAD
 //	//Mapping Appointment and Payment Entity
 //	@JsonIgnore
 //	@OneToOne(cascade = CascadeType.ALL)
 //    @JoinColumn(name = "payment_id", referencedColumnName = "paymentId", nullable = true)
 //	private Payment payment;
-=======
+
 	@Transient
 	private String customer_userId;
 	
@@ -69,7 +68,7 @@ public class Appointment {
 	@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "payment_id", referencedColumnName = "paymentId", nullable = true)
 	private Payment payment;
->>>>>>> 2845cb1dc5a94995c9b0e89081c61302729671fd
+
 	
 	
 	
