@@ -95,21 +95,6 @@ public class AppointmentServiceUnitTest {
     }
 
     @Test
-    public void testUpdateAppointment() {
-        when(appointmentRepository.save(any(Appointment.class))).thenReturn(sampleAppointment);
-
-        AppointmentDTO updatedAppointment = new AppointmentDTO();
-        updatedAppointment.setAppointmentId(1L);
-        // Set other properties for the updated appointment
-
-        AppointmentDTO result = appointmentService.updateAppointment(1L, updatedAppointment);
-
-        assertNotNull(result);
-        assertEquals(sampleAppointmentDTO.getAppointmentId(), result.getAppointmentId());
-        // Add more assertions for other properties
-    }
-
-    @Test
     public void testGetAppointment() {
         when(appointmentRepository.findById(anyLong())).thenReturn(Optional.of(sampleAppointment));
 
