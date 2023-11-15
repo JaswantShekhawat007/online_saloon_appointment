@@ -35,7 +35,15 @@ public class SalonServiceController {
 	public void setSalonservice(ISalonService salonservice) {
 		this.salonservice = salonservice;
 	}
-
+	
+	/**
+	 * URL : http://localhost:8085/salonservice/add-service
+	 * @PostMapping maps HTTP POST request on addSalonService Handler method
+	 * Handles POST requests for adding salon service
+	 * The end point is "/add-service/{id}"
+	 * @param UserDTO userDTO and long id 
+	 * @return ResponseEntity with an SalonServiceDTO and an appropriate HTTP status code.
+	 */
 	@PostMapping("/add-service")
 	public ResponseEntity<SalonServiceDTO> addSalonService(@Valid @RequestBody SalonServiceDTO serviceDTO) {
 		if(serviceDTO.getServiceId() == 0) {
@@ -44,32 +52,53 @@ public class SalonServiceController {
 		return new ResponseEntity<SalonServiceDTO>(salonservice.addService(serviceDTO), HttpStatus.CREATED);
 	}
 	
-	
-	
-//	@PostMapping("add-service")
-//	public ResponseEntity<SalonService> addSalonService(@Valid @RequestBody SalonService service) {
-//		if(service.getServiceId() == 0) {
-//			throw new InvalidDataException("No data provided");
-//		}
-//		return new ResponseEntity<SalonService>(salonservice.addService(service), HttpStatus.CREATED);
-//	}
-
+	/**
+	 * URL : http://localhost:8085/salonservice/delete/1
+	 * @DeleteMapping maps HTTP DELETE request on deleteSalonService Handler method
+	 * Handles DELETE requests for deleting salon service
+	 * The end point is "/delete/{id}"
+	 * @param long id 
+	 * @return ResponseEntity with a message and an appropriate HTTP status code.
+	 */
 	@DeleteMapping("/delete/{id}")
 	public ResponseEntity<String> deleteSalonService(@PathVariable long id) {
 		salonservice.removeService(id);
 		return new ResponseEntity<String>("SalonService with ID: "+id+" deleted successfully",HttpStatus.OK);
 	}
-
+	/**
+	 * URL : http://localhost:8085/salonservice/udate/1
+	 *@PutMapping maps HTTP PUT request on updateSalonService Handler method
+	 * Handles PUT requests for updating salon service
+	 * The end point is "/update/{id}"
+	 * @param SalonServiceDTO serviceDTO and long id 
+	 * @return ResponseEntity with an SalonServiceDTO and an appropriate HTTP status code.
+	 */
 	@PutMapping("/update/{id}")
 	public ResponseEntity<SalonServiceDTO> updateSalonService(@PathVariable long id, @Valid @RequestBody SalonServiceDTO serviceDTO/*, BindingResult result*/) {
 		return new ResponseEntity<SalonServiceDTO>(salonservice.updateService(id, serviceDTO), HttpStatus.OK);
 	}
-
+	
+	/**
+	 * URL : http://localhost:8085/salonservice/get/1
+	 * @GetMapping maps HTTP GET request on getSalonService Handler method
+	 * Handles GET requests for getting salon service
+	 * The end point is "/get/{id}"
+	 * @param long id 
+	 * @return ResponseEntity with an SalonServiceDTO and an appropriate HTTP status code.
+	 */
 	@GetMapping("/get/{id}")
 	public ResponseEntity<SalonServiceDTO> getServiceById(@PathVariable long id) {
 		return new ResponseEntity<SalonServiceDTO>(salonservice.getService(id), HttpStatus.OK);
 	}
-
+	
+	/**
+	 * URL : http://localhost:8085/salonservice/get/all
+	 * @GetMapping maps HTTP GET request on getAllServices Handler method
+	 * Handles GET requests for getting all salon service
+	 * The end point is "/get/all"
+	 * @param is not required
+	 * @return ResponseEntity with List<SalonServiceDTO> and an appropriate HTTP status code.
+	 */
 	@GetMapping("/get/all")
 	public ResponseEntity<List<SalonServiceDTO>> getAllServices() {
 		return new ResponseEntity<List<SalonServiceDTO>>(salonservice.getAllServices(),HttpStatus.OK);

@@ -31,7 +31,7 @@ public class OrderDTO {
 	@FutureOrPresent(message = "Invalid Billing Date")
 	private LocalDate billingDate;
 	
-<<<<<<< HEAD
+
 
 	@Valid
 	@JsonIgnore
@@ -39,12 +39,10 @@ public class OrderDTO {
 
 //	@Valid
 //	private CustomerDTO customer;
-=======
-	@Valid
-	@JsonIgnore
-	private CustomerDTO customer;
+
 	
->>>>>>> 48af7718bbc8b6b8d60db9ab2bf4097fea03b192
+	
+
 	private String customer_userId;
 	
 	@NotEmpty

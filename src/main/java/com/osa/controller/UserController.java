@@ -31,6 +31,14 @@ public class UserController {
 		this.userService = userService;
 	}
 	
+	/**
+	 * URL : http://localhost:8085/user/sign-in
+	 * @PostMapping maps HTTP POST request on signIn Handler method
+	 * Handles POST requests for signing in
+	 * The end point is "/sign-in"
+	 * @param UserDTO userDTO
+	 * @return ResponseEntity with an UserDTO and an appropriate HTTP status code.
+	 */
 	@PostMapping("/sign-in")
 	public ResponseEntity<UserDTO> signIn(@Valid @RequestBody UserDTO userDTO, BindingResult result) {
 		if (result.hasErrors()) {
@@ -39,7 +47,14 @@ public class UserController {
 		return new ResponseEntity<UserDTO>(userService.signIn(userDTO), HttpStatus.OK);
 	}
 	
-	
+	/**
+	 * URL : http://localhost:8085/user/Nandu
+	 * @PostMapping maps HTTP POST request on changePassword Handler method
+	 * Handles POST requests for changing password
+	 * The end point is "/change-password/{id}"
+	 * @param UserDTO userDTO and long id 
+	 * @return ResponseEntity with an UserDTO and an appropriate HTTP status code.
+	 */
 	@PostMapping("/change-password/{id}")
 	public ResponseEntity<UserDTO> changePassword(@Valid @RequestBody UserDTO userDTO, @PathVariable long id, BindingResult result) 
 			throws UserNotFoundException {
