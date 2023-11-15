@@ -66,7 +66,7 @@ public class Appointment {
 	//Mapping Appointment and Payment Entity
 	@JsonIgnore
 	@OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "payment_id", referencedColumnName = "paymentId", nullable = true)
+    @JoinColumn(name = "payment_id", referencedColumnName = "payment_id", nullable = true)
 	private Payment payment;
 
 	

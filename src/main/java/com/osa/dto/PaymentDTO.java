@@ -36,9 +36,6 @@ public class PaymentDTO {
 	@NotEmpty(message = "Payment Status Required")
 	private String status;
 
-	
-	private Card card;
-	
 	@Valid
 	private CardDTO card;
 	

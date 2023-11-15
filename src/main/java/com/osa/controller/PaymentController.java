@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.osa.dto.CardDTO;
 import com.osa.dto.PaymentDTO;
-import com.osa.exception.InvalidDataException;
 import com.osa.model.Payment;
 import com.osa.service.IPaymentService;
 import com.osa.service.PaymentServiceImpl;
@@ -31,76 +30,112 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 @RequestMapping(value = "/payment")
 public class PaymentController {
 
-
-<<<<<<< HEAD
-   
-
     @Autowired
    private PaymentServiceImpl paymentService;
     
-=======
-	 @Autowired
-	 private PaymentServiceImpl paymentService;
-
->>>>>>> 48af7718bbc8b6b8d60db9ab2bf4097fea03b192
 
     /*
-        URL : http://localhost:8080/payment/addPayment
+       
         Input :
                {
-                 "paymentId":1
-                 "type": "PREPAID",
-                 "status":"successful",
-                 "card_id":"23901",
-                
-               }
-     */
-<<<<<<< HEAD
-    @PostMapping("/add")
-	public ResponseEntity<Object> addPayment(@RequestBody PaymentDTO paymentDTO) {
-		ResponseEntity<Object> response=null;
-		PaymentDTO p= paymentService.addPayment(paymentDTO);
-		return new ResponseEntity<Object>(p,HttpStatus.CREATED);
-		
-	}
+                "paymentId": 0,
+                "type": "PREPAID",
+                "status": "SUCCESSFUL",
+                "card": {
+                  "id": 0,
+                  "cardName": "CreditCard",
+                  "cardNumber": "1235632612789122",
+                  "expiryDate": "2025-11-14",
+                  "bankName": "ICICI"
+  }
+}   */
     
-    @DeleteMapping("/removePayment/{id}")
-=======
-	 @PostMapping("/add")
+    /**  
+     *  URL : http://localhost:8085/payment/add
+     *  @PostMapping maps HTTP POST request on addPayment Handler method 
+     *  Handler method handles HTTP POST request to add a new payment
+     *  The endpoint is "/add".
+     *  @param PaymentDTO paymentDTO which is a paymentDTO type
+     *  @return ResponseEntity with an PaymentDTO and an appropriate HTTP status code
+     */
+   
+    
+    @PostMapping(value="/add")
 	public ResponseEntity<Object> addPayment(@RequestBody PaymentDTO paymentDTO) {
 		ResponseEntity<Object> response=null;
 		PaymentDTO p= paymentService.addPayment(paymentDTO);
 		response = new ResponseEntity<Object>(p,HttpStatus.CREATED);
 		return response;
+		
 	}
-
-    @DeleteMapping("/remove/{id}")
->>>>>>> 48af7718bbc8b6b8d60db9ab2bf4097fea03b192
+    
+    
+    
+    
+    /**
+      * URL : http://localhost:8085/payment/remove/1
+      * @DeleteMapping maps HTTP POST request on removePayment Handler method 
+      * Handler method handles HTTP DELETE requests to delete a payment
+      * The endpoint is "/remove/{id}",, where {id} is a path variable representing the payment_id
+      * @return ResponseEntity with a message and an appropriate HTTP status code
+      */
+    
+    @DeleteMapping(value="/remove/{id}")
 	public ResponseEntity<String> removePayment(@PathVariable long id) {
 		paymentService.removePayment(id);
 		return new ResponseEntity<String>("Payment with ID: "+id+" deleted successfully",HttpStatus.OK);
 	}
-	
-	@PutMapping("/updatePayment/{id}")
-	public ResponseEntity<PaymentDTO> updatePayment(@PathVariable long id, @Valid @RequestBody PaymentDTO paymentDTO, BindingResult result) {
-		if (result.hasErrors()) {
-			throw new InvalidDataException("Payment data is not Valid!");
-		}
+    
+    
+    
+	/**
+      * URL : http://localhost:8085/payment/update/1
+      * @PutMapping maps HTTP POST request on updatePayment Handler method 
+      * Handler method handles HTTP PUT requests to update a payment
+      * The endpoint is "/update/{id}", where {id} is a path variable representing the payment_id
+      * @param PaymentDTO paymentDTO which is a paymentDTO type
+      * @return ResponseEntity with a PaymentDTO and an appropriate HTTP status code
+      */ 
+    
+	@PutMapping(value="/update/{id}")
+	public ResponseEntity<PaymentDTO> updatePayment(@PathVariable long id, @Valid @RequestBody PaymentDTO paymentDTO) {
 		return new ResponseEntity<PaymentDTO>(paymentService.updatePayment(id, paymentDTO), HttpStatus.OK);
 	}
 	
 	
-	@GetMapping("/getPayment/{id}")
+	
+	
+	/**
+      * URL : http://localhost:8085/payment/get/1
+	  * @GetMapping maps HTTP GET request on getPaymentDetails Handler method 
+      * Handler method handles HTTP GET requests to retrieve a payment by id
+      * The endpoint is "/get/{id}", where {id} is a path variable representing the payment_id
+      * @return ResponseEntity with a PaymentDTO and an appropriate HTTP status code
+      */
+	
+	@GetMapping(value="/get/{id}")
 	public ResponseEntity<PaymentDTO> getPaymentDetails(@PathVariable long id) {
 		return new ResponseEntity<PaymentDTO>(paymentService.getPaymentDetails(id), HttpStatus.OK);
 	}
 	
-	@GetMapping("/get")
-	public ResponseEntity<Object> getAllPaymentDetails(){
-		ResponseEntity<Object> response = null;
+	
+	
+	
+	/**
+      * URL : http://localhost:8085/payment/getAll
+	  * @GetMapping maps HTTP GET request on getAllPaymentDetails Handler method 
+      * Handler method handles HTTP GET requests to retrieve all payments
+      * The endpoint is "/getAll".
+      * @return ResponseEntity with  PaymentDTO and an appropriate HTTP status code
+	 */
+	
+	@GetMapping(value="/getAll")
+	public ResponseEntity<PaymentDTO> getAllPaymentDetails(){
+		ResponseEntity<PaymentDTO> response = null;
 		List<PaymentDTO> lp= paymentService.getAllPaymentDetails();
-		response=new ResponseEntity<Object>(lp,HttpStatus.OK);
+		response=new ResponseEntity<PaymentDTO>(HttpStatus.OK);
 		return response;
+		
 	}
 
 

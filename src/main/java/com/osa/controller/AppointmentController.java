@@ -32,11 +32,14 @@ public class AppointmentController {
 		this.appointmentService = appointmentService;
 	}
 	
-	@PostMapping("/book-appointment")
-	public ResponseEntity<AppointmentDTO> registerCustomer(@Valid @RequestBody AppointmentDTO appointmentDTO, BindingResult result) {
-		if (result.hasErrors()) {
-			throw new InvalidDataException("Customer data is not Valid!");
-		}
+    //  It maps HTTP POST request on registerCustomer Handler method 
+    // This method handles HTTP POST requests to register a new appointment.
+    // The endpoint is "/book-appointment".
+    //  * @param paymentDTO which is a paymentDTO type
+    //  * @return ResponseEntity with an PaymentDTO and an appropriate HTTP status code
+	
+	@PostMapping(value="/book-appointment")
+	public ResponseEntity<AppointmentDTO> registerCustomer(@Valid @RequestBody AppointmentDTO appointmentDTO) {
 
 		return new ResponseEntity<AppointmentDTO>(appointmentService.addAppointment(appointmentDTO), HttpStatus.CREATED);
 	}
@@ -48,10 +51,7 @@ public class AppointmentController {
 	}
 	
 	@PutMapping("/update-appointment/{id}")
-	public ResponseEntity<AppointmentDTO> updateCustomer(@PathVariable long id, @Valid @RequestBody AppointmentDTO appointmentDTO/*, BindingResult result*/) {
-//		if (result.hasErrors()) {
-//			throw new InvalidDataException("Customer data is not Valid!");
-//		}
+	public ResponseEntity<AppointmentDTO> updateCustomer(@PathVariable long id, @Valid @RequestBody AppointmentDTO appointmentDTO) {
 		return new ResponseEntity<AppointmentDTO>(appointmentService.updateAppointment(id, appointmentDTO), HttpStatus.OK);
 	}
 	

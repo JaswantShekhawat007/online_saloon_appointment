@@ -27,7 +27,7 @@ public class CardDTO {
 	 * Credit Card Number ranges between 10 to 19
 	 * Debit Card Number ranges between 14 to 16
 	*/
-	@NotEmpty(message = "Card Number Field Empty")
+	@NotEmpty(message = "Card Number Field is Empty")
     @Size(min = 10, max = 19, message = "Invalid Card Number")
 	private String cardNumber;
 	

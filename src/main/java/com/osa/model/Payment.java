@@ -13,6 +13,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.Transient;
 
 
@@ -26,7 +28,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name="payments")
+@Table(name="payment")
 public class Payment {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -34,20 +36,17 @@ public class Payment {
 	private long paymentId;
 	
 	
-	@Column(name="type")
+	@Column(name="payment_type")
 	private String type;
 	
 	
-	@Column(name="status")
+	@Column(name="payment_status")
 	private String status;
 
 		
 	@OneToOne (cascade = CascadeType.ALL)
 	@JoinColumn(name="id")
 	private Card card;
-
-
-}
 	
 	@JsonIgnore
 	@OneToOne(cascade = CascadeType.ALL)
@@ -58,4 +57,6 @@ public class Payment {
 	private long appointmentId;
 	
 }
+	
+
 

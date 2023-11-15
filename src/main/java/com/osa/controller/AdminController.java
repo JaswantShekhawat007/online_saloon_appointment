@@ -37,10 +37,29 @@ public class AdminController {
 		this.customerService = customerService;
 	}
 	
+	
+	
+	 /**  
+     *  URL : http://localhost:8085/admin/get-customer/1
+     *  @GetMapping maps HTTP GET request on getCustomerById Handler method 
+     *  Handler method handles HTTP GET request to retrieve a customer by id
+     *  The endpoint is "/get-customer/{id}",  where {id} is a path variable representing the id of customer
+     *  @return ResponseEntity with a CustomerDTO and an appropriate HTTP status code
+     */
+	
 	@GetMapping("/get-customer/{id}")
 	public ResponseEntity<CustomerDTO> getCustomerById(@PathVariable String id) {
 		return new ResponseEntity<CustomerDTO>(customerService.getCustomer(id), HttpStatus.OK);
 	}
+	
+	
+	 /**  
+     *  URL : http://localhost:8085/admin/get-customer/all
+     *  @GetMapping maps HTTP GET request on getAllCustomers Handler method 
+     *  Handler method handles HTTP GET request to retrieve all customers
+     *  The endpoint is "/get-customer/all"
+     *  @return ResponseEntity with CustomerDTO and an appropriate HTTP status code
+     */
 	
 	@GetMapping("/get-customer/all")
 	public ResponseEntity<List<CustomerDTO>> getAllCustomers() {
@@ -58,10 +77,30 @@ public class AdminController {
 		this.appointmentService = appointmentService;
 	}
 	
+	
+	/**
+     * URL : http://localhost:8085/admin/get-appointment/1
+	 * @GetMapping maps HTTP GET request on getAppointmentById Handler method 
+     * Handler method handles HTTP GET request to retrieve all appointments
+     * The endpoint is "/get-appointment/{id}", where {id} is a path variable representing the id of appointment
+     * @return ResponseEntity with a AppointmentDTO and an appropriate HTTP status code
+     */
+	
 	@GetMapping("/get-appointment/{id}")
 	public ResponseEntity<AppointmentDTO> getAppointmentById(@PathVariable long id) {
 		return new ResponseEntity<AppointmentDTO>(appointmentService.getAppointment(id), HttpStatus.OK);
 	}
+	
+	
+	/**
+     * URL : http://localhost:8085/admin/"/get-appointment/all"
+	 * @GetMapping maps HTTP GET request on getAllApointments Handler method 
+     * Handler method handles HTTP GET request to retrieve an appointment by id
+     * The endpoint is "/get-appointment/all"
+     * @return ResponseEntity with a AppointmentDTO and an appropriate HTTP status code
+     */
+	
+	
 	
 	@GetMapping("/get-appointment/all")
 	public ResponseEntity<List<AppointmentDTO>> getAllApointments() {
@@ -78,13 +117,29 @@ public class AdminController {
 		this.orderService = orderService;
 	}
 	
-	@GetMapping(value= "/get-service/{id}")
+	/**
+     * URL : http://localhost:8085/admin/get-orderservice/1
+	 * @GetMapping maps HTTP GET request on getOrderDetails Handler method 
+     * Handler method handles HTTP GET request to retrieve an order by id
+     * The endpoint is "/get-orderservice/{id}", where {id} is a path variable representing the id of order
+     * @return ResponseEntity with a OrderDTO and an appropriate HTTP status code
+     */
+	
+	@GetMapping(value= "/get-orderservice/{id}")
 	public ResponseEntity<OrderDTO> getOrderDetails(@PathVariable Long id) throws OrderNotFoundException{
 		
 		return new ResponseEntity<OrderDTO>(orderService.getOrderDetails(id), HttpStatus.OK);
 	}
 	
-	@GetMapping(value= "/get-service/all")
+	/**
+     * URL : http://localhost:8085/admin/get-orderservice/1
+	 * @GetMapping maps HTTP GET request on getAllOrders Handler method 
+     * Handler method handles HTTP GET request to retrieve all orders
+     * The endpoint is "/get-orderservice/all"
+     * @return ResponseEntity with a OrderDTO and an appropriate HTTP status code
+     */
+	
+	@GetMapping(value= "/get-orderservice/all")
 	public ResponseEntity<List<OrderDTO>> getAllOrders(){
 		return new ResponseEntity<List<OrderDTO>>(orderService.getAllOrders(), HttpStatus.OK);
 	}
@@ -99,12 +154,31 @@ public class AdminController {
         this.paymentService = paymentService;
     }
     
+    
+	/**
+     * URL : http://localhost:8085/admin/get-payment/1
+	 * @GetMapping maps HTTP GET request on getPaymentDetails Handler method 
+     * Handler method handles HTTP GET request to retrieve a payment by id
+     * The endpoint is "/get-payment/{id}", where {id} is a path variable representing the payment_id
+     * @return ResponseEntity with a PaymentDTO and an appropriate HTTP status code
+     */
+    
 	@GetMapping("/get-payment/{id}")
 	public ResponseEntity<PaymentDTO> getPaymentDetails(@PathVariable long id) {
 		return new ResponseEntity<PaymentDTO>(paymentService.getPaymentDetails(id), HttpStatus.OK);
 	}
 	
-	@GetMapping("/get/all")
+	
+	
+	/**
+     * URL : http://localhost:8085/admin/get-payment/all
+	 * @GetMapping maps HTTP GET request on getAllPaymentDetails Handler method 
+     * Handler method handles HTTP GET request to retrieve all payments
+     * The endpoint is "/get-payment/all"
+     * @return ResponseEntity with a PaymentDTO and an appropriate HTTP status code
+     */
+	
+	@GetMapping("/get-payment/all")
 	public ResponseEntity<Object> getAllPaymentDetails(){
 		ResponseEntity<Object> response = null;
 		List<PaymentDTO> lp= paymentService.getAllPaymentDetails();
