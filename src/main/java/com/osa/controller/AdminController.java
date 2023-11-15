@@ -104,11 +104,11 @@ public class AdminController {
 		return new ResponseEntity<PaymentDTO>(paymentService.getPaymentDetails(id), HttpStatus.OK);
 	}
 	
-	@GetMapping("/get/all")
-	public ResponseEntity<Object> getAllPaymentDetails(){
-		ResponseEntity<Object> response = null;
+	@GetMapping("/get-payment/all")
+	public ResponseEntity<List<PaymentDTO>> getAllPaymentDetails(){
+		ResponseEntity<List<PaymentDTO>> response = null;
 		List<PaymentDTO> lp= paymentService.getAllPaymentDetails();
-		response=new ResponseEntity<Object>(lp,HttpStatus.OK);
+		response=new ResponseEntity<List<PaymentDTO>>(lp,HttpStatus.OK);
 		return response;
 	}
 	

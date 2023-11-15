@@ -78,9 +78,9 @@ public class ISalonServiceImpl implements ISalonService{
 	}
 
 	@Override
-	public List<SalonServiceDTO> getServicesByName() {
+	public List<SalonServiceDTO> getServicesByName(String name) {
 		List<SalonServiceDTO> serviceDTOs = new ArrayList<SalonServiceDTO>();
-		List<SalonService> services = salonRepository.getServicesByName();
+		List<SalonService> services = salonRepository.getServicesByName(name);
 		
 		for(SalonService service: services) {
 			SalonServiceDTO serviceDTO = new SalonServiceDTO();
@@ -92,9 +92,9 @@ public class ISalonServiceImpl implements ISalonService{
 	}
 
 	@Override
-	public List<SalonServiceDTO> getServicesByPrice() {
+	public List<SalonServiceDTO> getServicesByPrice(String price) {
 		List<SalonServiceDTO> serviceDTOs = new ArrayList<SalonServiceDTO>();
-		List<SalonService> services = salonRepository.getServicesByPrice();
+		List<SalonService> services = salonRepository.getServicesByPrice(price);
 		
 		for(SalonService service: services) {
 			SalonServiceDTO serviceDTO = new SalonServiceDTO();
@@ -106,9 +106,9 @@ public class ISalonServiceImpl implements ISalonService{
 	}
 
 	@Override
-	public List<SalonServiceDTO> getServicesByDuration() {
+	public List<SalonServiceDTO> getServicesByDuration(String duration) {
 		List<SalonServiceDTO> serviceDTOs = new ArrayList<SalonServiceDTO>();
-		List<SalonService> services = salonRepository.getServicesByDuration();
+		List<SalonService> services = salonRepository.getServicesByDuration(duration);
 		
 		for(SalonService service: services) {
 			SalonServiceDTO serviceDTO = new SalonServiceDTO();

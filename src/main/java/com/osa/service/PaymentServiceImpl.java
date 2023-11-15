@@ -38,7 +38,7 @@ public class PaymentServiceImpl implements IPaymentService{
   		this.appointmentRepository = appointmentRepository;
   	}
   	
-  //Payment Repository
+  //Card Repository
   	private CardRepository cardrepository;
   	
   	@Autowired
@@ -54,7 +54,7 @@ public class PaymentServiceImpl implements IPaymentService{
 		Card card = new Card();
 		BeanUtils.copyProperties(paymentDTO.getCard(), card);
 		cardrepository.save(card);
-
+		payment.setCard(card);
 		paymentrepository.save(payment);
 		
 		Appointment existing_appointment = appointmentRepository.findById(paymentDTO.getAppointmentId()).get();

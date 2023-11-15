@@ -27,7 +27,6 @@ public class OrderDTO {
 	@NotNull(message = "Please Enter Amount")
 	private double amount;
 	
-	@NotEmpty
 	@FutureOrPresent(message = "Invalid Billing Date")
 	private LocalDate billingDate;
 	
@@ -37,7 +36,7 @@ public class OrderDTO {
 	
 	private String customer_userId;
 	
-	@NotEmpty
+	@NotNull
 	@Enumerated(EnumType.STRING)
 	private PaymentMethod paymentMethod;
 

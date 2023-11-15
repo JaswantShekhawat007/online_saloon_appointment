@@ -37,9 +37,9 @@ public class CustomerController {
 	
 	@PostMapping("/register")
 	public ResponseEntity<CustomerDTO> registerCustomer(@Valid @RequestBody CustomerDTO customerDTO, BindingResult result) throws InvalidDataException {
-		if (result.hasErrors()) {
-			throw new InvalidDataException("Customer data is not Valid!");
-		}
+//		if (result.hasErrors()) {
+//			throw new InvalidDataException("Customer data is not Valid!");
+//		}
 		return new ResponseEntity<CustomerDTO>(customerService.addCustomer(customerDTO), HttpStatus.CREATED);
 	}
 	

@@ -23,11 +23,10 @@ public class SalonServiceDTO {
 	@JsonProperty("service_price")
 	private String servicePrice;
 	
-	@NotBlank(message = "duration")
+	@NotBlank(message = "Enter Duration")
 	@JsonProperty("service_duration")
 	private String serviceDuration;
 	
-	@NotBlank(message = "discount")
 	private long discount;	
 	
 	

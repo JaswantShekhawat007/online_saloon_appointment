@@ -12,13 +12,13 @@ import com.osa.model.SalonService;
 @Repository
 public interface ISalonRepository extends JpaRepository<SalonService, Long> {
 	
-	@Query("select s.serviceName from SalonService s")
-	List<SalonService> getServicesByName();
+	@Query("select s from SalonService s where s.serviceName = ?1")
+	List<SalonService> getServicesByName(String serviceName);
 	
-	@Query("select s.serviceName, servicePrice from SalonService s")
-	List<SalonService> getServicesByPrice();
+	@Query("select s from SalonService s where s.servicePrice = ?1")
+	List<SalonService> getServicesByPrice(String servicePrice);
 	
-	@Query("select s.serviceName,s.serviceDuration from SalonService s")
-	List<SalonService> getServicesByDuration();
+	@Query("select s from SalonService s where s.serviceDuration = ?1")
+	List<SalonService> getServicesByDuration(String serviceDuration);
 	
 }

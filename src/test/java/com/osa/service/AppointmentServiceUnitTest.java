@@ -18,7 +18,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.BeanUtils;
 
 import com.osa.dto.AppointmentDTO;
-import com.osa.exception.CustomerNotFoundException;
 import com.osa.model.Appointment;
 import com.osa.model.Customer;
 import com.osa.model.SalonService;

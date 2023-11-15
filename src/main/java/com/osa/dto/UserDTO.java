@@ -35,8 +35,7 @@ public class UserDTO {
 		.{8, 20} represents at least 8 characters and at most 20 characters.
 		$ represents the end of the string.
 	 */
-	@NotEmpty(message = "Password Field Empty")
-	@Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&-+=()])(?=\\S+$).{8, 20}$", message = "Invalid Password Rule")
+	@Pattern(regexp = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$", message = "Invalid Password Rule")
 	private String password;
 	
 }

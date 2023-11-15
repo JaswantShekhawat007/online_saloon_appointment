@@ -25,6 +25,28 @@ public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler
     			.collect(Collectors.toList());
 		return new ResponseEntity<Object>(errors, status);
 	}
+	
+//	@ExceptionHandler(MethodArgumentNotValidException.class)
+//    public ResponseEntity<Map<String, String>> handleValidationExceptions(MethodArgumentNotValidException ex) {
+//        Map<String, String> errors = new HashMap<>();
+//        ex.getBindingResult().getAllErrors().forEach((error) -> {
+//            String fieldName = ((FieldError) error).getField();
+//            String errorMessage = error.getDefaultMessage();
+//            errors.put(fieldName, errorMessage);
+//        });
+//        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errors);
+//    }
+
+//    @ExceptionHandler(BindException.class)
+//    public ResponseEntity<Map<String, String>> handleBindExceptions(BindException ex) {
+//        Map<String, String> errors = new HashMap<>();
+//        ex.getBindingResult().getAllErrors().forEach((error) -> {
+//            String fieldName = ((FieldError) error).getField();
+//            String errorMessage = error.getDefaultMessage();
+//            errors.put(fieldName, errorMessage);
+//        });
+//        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errors);
+//    }
 
 	@ExceptionHandler(CustomerNotFoundException.class)
 	public ResponseEntity<String> handleCustomerNotFoundException(CustomerNotFoundException cnfe){

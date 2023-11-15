@@ -13,12 +13,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.osa.dto.SalonServiceDTO;
 import com.osa.exception.InvalidDataException;
-import com.osa.model.SalonService;
 import com.osa.service.ISalonService;
 
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
@@ -43,16 +41,6 @@ public class SalonServiceController {
 		}
 		return new ResponseEntity<SalonServiceDTO>(salonservice.addService(serviceDTO), HttpStatus.CREATED);
 	}
-	
-	
-	
-//	@PostMapping("add-service")
-//	public ResponseEntity<SalonService> addSalonService(@Valid @RequestBody SalonService service) {
-//		if(service.getServiceId() == 0) {
-//			throw new InvalidDataException("No data provided");
-//		}
-//		return new ResponseEntity<SalonService>(salonservice.addService(service), HttpStatus.CREATED);
-//	}
 
 	@DeleteMapping("/delete/{id}")
 	public ResponseEntity<String> deleteSalonService(@PathVariable long id) {
@@ -65,7 +53,7 @@ public class SalonServiceController {
 		return new ResponseEntity<SalonServiceDTO>(salonservice.updateService(id, serviceDTO), HttpStatus.OK);
 	}
 
-	@GetMapping("/get/{id}")
+	@GetMapping("/getbyid/{id}")
 	public ResponseEntity<SalonServiceDTO> getServiceById(@PathVariable long id) {
 		return new ResponseEntity<SalonServiceDTO>(salonservice.getService(id), HttpStatus.OK);
 	}
@@ -73,6 +61,21 @@ public class SalonServiceController {
 	@GetMapping("/get/all")
 	public ResponseEntity<List<SalonServiceDTO>> getAllServices() {
 		return new ResponseEntity<List<SalonServiceDTO>>(salonservice.getAllServices(),HttpStatus.OK);
+	}
+	
+	@GetMapping("/getbyname/{name}")
+	public ResponseEntity<List<SalonServiceDTO>> getServiceByName(@PathVariable String name) {
+		return new ResponseEntity<List<SalonServiceDTO>>(salonservice.getServicesByName(name), HttpStatus.OK);
+	}
+	
+	@GetMapping("/getbyprice/{price}")
+	public ResponseEntity<List<SalonServiceDTO>> getServiceByPrice(@PathVariable String price) {
+		return new ResponseEntity<List<SalonServiceDTO>>(salonservice.getServicesByPrice(price), HttpStatus.OK);
+	}
+	
+	@GetMapping("/getbyduration/{duration}")
+	public ResponseEntity<List<SalonServiceDTO>> getServiceByDuration(@PathVariable String duration) {
+		return new ResponseEntity<List<SalonServiceDTO>>(salonservice.getServicesByDuration(duration), HttpStatus.OK);
 	}
 
 }

@@ -32,23 +32,19 @@ public class AppointmentDTO {
 	@Enumerated(EnumType.STRING)
 	private VisitType visitType;
 	
-	@NotEmpty(message = "Empty Field Preffered Date")
 	@Future(message = "Invalid Preffered Date")
 	private LocalDate prefferedDate;
 	
-	@NotEmpty(message = "Empty Field Preffered Time")
 	private LocalTime prefferedTime;
 	
 	@JsonIgnore
 	private SalonServiceDTO salon_service;
 	
-	@NotBlank
 	private long service_id;
 	
 	@JsonIgnore
 	private CustomerDTO customer;
 	
-	@NotBlank
 	private String customer_userId;
 	
 	@JsonIgnore

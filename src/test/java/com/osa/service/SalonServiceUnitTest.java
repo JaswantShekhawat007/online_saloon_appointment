@@ -40,7 +40,7 @@ public class SalonServiceUnitTest {
         // Initialize sample data
         sampleServiceDTO = new SalonServiceDTO();
         sampleServiceDTO.setServiceId(1L);
-        sampleServiceDTO.setServiceName("Haircut");
+        sampleServiceDTO.setServiceName("HAIRCUT");
         sampleServiceDTO.setServicePrice("25.0");
         sampleServiceDTO.setServiceDuration("1 hour");
         sampleServiceDTO.setDiscount(10);
@@ -48,7 +48,7 @@ public class SalonServiceUnitTest {
 
         sampleService = new SalonService();
         sampleService.setServiceId(1L);
-        sampleService.setServiceName("Haircut");
+        sampleService.setServiceName("HAIRCUT");
         sampleService.setServicePrice("25.0");
         sampleServiceDTO.setServiceDuration("1 hour");
         sampleServiceDTO.setDiscount(10);
@@ -121,47 +121,76 @@ public class SalonServiceUnitTest {
     
     @Test
     public void testGetServicesByName() {
+        // Mocking data
+        String serviceName = "HAIRCUT";
+        SalonService service1 = new SalonService();
+        service1.setServiceName(serviceName);
+        SalonService service2 = new SalonService();
+        service2.setServiceName(serviceName);
+
         List<SalonService> services = new ArrayList<>();
-        services.add(sampleService);
+        services.add(service1);
+        services.add(service2);
 
-        when(salonRepository.getServicesByName()).thenReturn(services);
+        when(salonRepository.getServicesByName(serviceName)).thenReturn(services);
 
-        List<SalonServiceDTO> result = salonService.getServicesByName();
+        // Calling the service method
+        List<SalonServiceDTO> serviceDTOs = salonService.getServicesByName(serviceName);
 
-        assertNotNull(result);
-        assertEquals(1, result.size());
-        assertEquals(sampleServiceDTO.getServiceId(), result.get(0).getServiceId());
-        // Add more assertions for other properties
+        // Assertions
+        assertEquals(2, serviceDTOs.size());
+        assertEquals(serviceName, serviceDTOs.get(0).getServiceName());
+        assertEquals(serviceName, serviceDTOs.get(1).getServiceName());
     }
-
+    
+    
     @Test
     public void testGetServicesByPrice() {
+        // Mocking data
+        String servicePrice = "25.0";
+        SalonService service1 = new SalonService();
+        service1.setServicePrice(servicePrice);
+        SalonService service2 = new SalonService();
+        service2.setServicePrice(servicePrice);
+
         List<SalonService> services = new ArrayList<>();
-        services.add(sampleService);
+        services.add(service1);
+        services.add(service2);
 
-        when(salonRepository.getServicesByPrice()).thenReturn(services);
+        when(salonRepository.getServicesByPrice(servicePrice)).thenReturn(services);
 
-        List<SalonServiceDTO> result = salonService.getServicesByPrice();
+        // Calling the service method
+        List<SalonServiceDTO> serviceDTOs = salonService.getServicesByPrice(servicePrice);
 
-        assertNotNull(result);
-        assertEquals(1, result.size());
-        assertEquals(sampleServiceDTO.getServiceId(), result.get(0).getServiceId());
-        // Add more assertions for other properties
+        // Assertions
+        assertEquals(2, serviceDTOs.size());
+        assertEquals(servicePrice, serviceDTOs.get(0).getServicePrice());
+        assertEquals(servicePrice, serviceDTOs.get(1).getServicePrice());
     }
 
+    
     @Test
     public void testGetServicesByDuration() {
+        // Mocking data
+        String serviceDuration = "1 hour";
+        SalonService service1 = new SalonService();
+        service1.setServiceDuration(serviceDuration);
+        SalonService service2 = new SalonService();
+        service2.setServiceDuration(serviceDuration);
+
         List<SalonService> services = new ArrayList<>();
-        services.add(sampleService);
+        services.add(service1);
+        services.add(service2);
 
-        when(salonRepository.getServicesByDuration()).thenReturn(services);
+        when(salonRepository.getServicesByDuration(serviceDuration)).thenReturn(services);
 
-        List<SalonServiceDTO> result = salonService.getServicesByDuration();
+        // Calling the service method
+        List<SalonServiceDTO> serviceDTOs = salonService.getServicesByDuration(serviceDuration);
 
-        assertNotNull(result);
-        assertEquals(1, result.size());
-        assertEquals(sampleServiceDTO.getServiceId(), result.get(0).getServiceId());
-        // Add more assertions for other properties
+        // Assertions
+        assertEquals(2, serviceDTOs.size());
+        assertEquals(serviceDuration, serviceDTOs.get(0).getServiceDuration());
+        assertEquals(serviceDuration, serviceDTOs.get(1).getServiceDuration());
     }
 
 }

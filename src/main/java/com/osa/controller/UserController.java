@@ -20,7 +20,7 @@ import com.osa.service.UserService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
-@Tag(name = "Online Saloon Appointment", description = "User Service API's")
+@Tag(name = "User Service API", description = "Online Saloon Appointment")
 @RequestMapping(value="/user")
 public class UserController {
 	

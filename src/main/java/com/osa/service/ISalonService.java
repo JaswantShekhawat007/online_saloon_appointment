@@ -12,7 +12,7 @@ public interface ISalonService {
 	SalonServiceDTO updateService(long id, SalonServiceDTO serviceDTO);
 	SalonServiceDTO getService(long id);
 	List<SalonServiceDTO> getAllServices();
-	List<SalonServiceDTO> getServicesByName();
-	List<SalonServiceDTO> getServicesByPrice();
-	List<SalonServiceDTO> getServicesByDuration();
+	List<SalonServiceDTO> getServicesByName(String name);
+	List<SalonServiceDTO> getServicesByPrice(String price);
+	List<SalonServiceDTO> getServicesByDuration(String duration);
 }
