@@ -29,16 +29,31 @@ public class PaymentController {
 	 private PaymentServiceImpl paymentService;
 
 
-    /*
-        URL : http://localhost:8080/payment/addPayment
-        Input :
-               {
-                 "type": "PREPAID",
-                 "status":"successful",
-                 "card_id":"23901",
-                
-               }
-     */
+		 /*
+	     
+	     Input :
+	            {
+	             "paymentId": 0,
+	             "type": "PREPAID",
+	             "status": "SUCCESSFUL",
+	             "card": {
+	               "id": 0,
+	               "cardName": "CreditCard",
+	               "cardNumber": "1235632612789122",
+	               "expiryDate": "2025-11-14",
+	               "bankName": "ICICI"
+	}
+	}   */
+	
+	 /**  
+	  *  URL : http://localhost:8085/payment/add
+	  *  @PostMapping maps HTTP POST request on addPayment Handler method 
+	  *  Handler method handles HTTP POST request to add a new payment
+	  *  The endpoint is "/add".
+	  *  @param PaymentDTO paymentDTO which is a paymentDTO type
+	  *  @return ResponseEntity with an PaymentDTO and an appropriate HTTP status code
+	  */
+	 
 	 @PostMapping("/add")
 	public ResponseEntity<Object> addPayment(@RequestBody PaymentDTO paymentDTO) {
 		ResponseEntity<Object> response=null;
@@ -46,13 +61,30 @@ public class PaymentController {
 		response = new ResponseEntity<Object>(p,HttpStatus.CREATED);
 		return response;
 	}
-
+	 
+	 /**
+      * URL : http://localhost:8085/payment/remove/1
+      * @DeleteMapping maps HTTP POST request on removePayment Handler method 
+      * Handler method handles HTTP DELETE requests to delete a payment
+      * The endpoint is "/remove/{id}",, where {id} is a path variable representing the payment_id
+      * @return ResponseEntity with a message and an appropriate HTTP status code
+      */
+	 
     @DeleteMapping("/remove/{id}")
 	public ResponseEntity<String> removePayment(@PathVariable long id) {
 		paymentService.removePayment(id);
 		return new ResponseEntity<String>("Payment with ID: "+id+" deleted successfully",HttpStatus.OK);
 	}
 	
+    /**
+     * URL : http://localhost:8085/payment/update/1
+     * @PutMapping maps HTTP POST request on updatePayment Handler method 
+     * Handler method handles HTTP PUT requests to update a payment
+     * The endpoint is "/update/{id}", where {id} is a path variable representing the payment_id
+     * @param PaymentDTO paymentDTO which is a paymentDTO type
+     * @return ResponseEntity with a PaymentDTO and an appropriate HTTP status code
+     */ 
+    
 	@PutMapping("/update/{id}")
 	public ResponseEntity<PaymentDTO> updatePayment(@PathVariable long id, @Valid @RequestBody PaymentDTO paymentDTO) {
 		
