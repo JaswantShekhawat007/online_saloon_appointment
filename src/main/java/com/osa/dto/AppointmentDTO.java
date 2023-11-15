@@ -37,6 +37,8 @@ public class AppointmentDTO {
 	
 	private LocalTime prefferedTime;
 	
+	private String serviceName;
+	
 	@JsonIgnore
 	private SalonServiceDTO salon_service;
 	

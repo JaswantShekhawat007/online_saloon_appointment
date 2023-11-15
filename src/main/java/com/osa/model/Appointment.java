@@ -40,9 +40,11 @@ public class Appointment {
 	
 	private LocalTime prefferedTime;
 	
+	private String serviceName;
+	
 	@JsonIgnore
 	@OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "service_name",referencedColumnName = "serviceId", nullable = true)
+    @JoinColumn(name = "service",referencedColumnName = "serviceId", nullable = true)
 	private SalonService salon_service;
 	
 	@Transient

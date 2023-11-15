@@ -25,28 +25,6 @@ public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler
     			.collect(Collectors.toList());
 		return new ResponseEntity<Object>(errors, status);
 	}
-	
-//	@ExceptionHandler(MethodArgumentNotValidException.class)
-//    public ResponseEntity<Map<String, String>> handleValidationExceptions(MethodArgumentNotValidException ex) {
-//        Map<String, String> errors = new HashMap<>();
-//        ex.getBindingResult().getAllErrors().forEach((error) -> {
-//            String fieldName = ((FieldError) error).getField();
-//            String errorMessage = error.getDefaultMessage();
-//            errors.put(fieldName, errorMessage);
-//        });
-//        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errors);
-//    }
-
-//    @ExceptionHandler(BindException.class)
-//    public ResponseEntity<Map<String, String>> handleBindExceptions(BindException ex) {
-//        Map<String, String> errors = new HashMap<>();
-//        ex.getBindingResult().getAllErrors().forEach((error) -> {
-//            String fieldName = ((FieldError) error).getField();
-//            String errorMessage = error.getDefaultMessage();
-//            errors.put(fieldName, errorMessage);
-//        });
-//        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errors);
-//    }
 
 	@ExceptionHandler(CustomerNotFoundException.class)
 	public ResponseEntity<String> handleCustomerNotFoundException(CustomerNotFoundException cnfe){
@@ -67,6 +45,11 @@ public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler
 	@ExceptionHandler(UserNotFoundException.class)
 	public ResponseEntity<String> handleUserNotFoundException(UserNotFoundException unfe){
 		return new ResponseEntity<String>(unfe.getLocalizedMessage(), HttpStatus.BAD_REQUEST);
+	}
+	
+	@ExceptionHandler(NoSuchAppointmentException.class)
+	public ResponseEntity<String> handleUserNotFoundException(NoSuchAppointmentException nsae){
+		return new ResponseEntity<String>(nsae.getLocalizedMessage(), HttpStatus.BAD_REQUEST);
 	}
 	
 }

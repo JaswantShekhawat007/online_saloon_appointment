@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import com.osa.dto.AppointmentDTO;
 import com.osa.exception.CustomerNotFoundException;
+import com.osa.exception.NoSuchAppointmentException;
 import com.osa.model.Appointment;
 import com.osa.model.Customer;
 import com.osa.model.SalonService;
@@ -77,8 +78,16 @@ public class AppointmentServiceImpl implements AppointmentService{
 
 	@Override
 	public AppointmentDTO updateAppointment(long id, AppointmentDTO appointmentDTO) {
-		Appointment appointment = new Appointment();
-		BeanUtils.copyProperties(appointmentDTO, appointment);
+		Appointment appointment = appointmentRepository.findById(id)
+				.orElseThrow(()->new NoSuchAppointmentException("Appointment With ID :"+id+" does Not Exist!"));
+		
+		appointment.setLocation(appointmentDTO.getLocation());
+		appointment.setPrefferedDate(appointmentDTO.getPrefferedDate());
+		appointment.setPrefferedTime(appointmentDTO.getPrefferedTime());
+		appointment.setServiceName(appointmentDTO.getServiceName());
+		appointment.setVisitType(appointmentDTO.getVisitType());
+		
+		
 		appointmentRepository.save(appointment);
 		return appointmentDTO;
 	}
